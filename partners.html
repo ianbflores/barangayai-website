@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partners — BarangayAI Partnership Program</title>
+  <meta name="description" content="Partner your barangay or municipality with BarangayAI. Bring AI tools, education, and the BarangayAI OS to your community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .why-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .why-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-card h4 { margin-bottom: .6rem; }
+    .why-card p { font-size: .9rem; margin: 0; }
+
+    .tier-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+    .process-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      transition: all var(--transition);
+    }
+    .process-step:hover { border-color: var(--green); box-shadow: var(--shadow); }
+    .process-step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 900;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 16px rgba(29,158,117,.3);
+    }
+    .process-step h4 { margin-bottom: .6rem; }
+    .process-step p { font-size: .9rem; }
+
+    .benefits-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .benefit-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.25rem;
+      background: var(--mint);
+      border-radius: var(--radius);
+      margin-bottom: .75rem;
+    }
+    .benefit-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .benefit-item h5 { margin-bottom: .3rem; font-size: .97rem; }
+    .benefit-item p { font-size: .87rem; margin: 0; }
+
+    .form-section {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .form-section h3 { margin-bottom: .5rem; }
+    .form-section > p { margin-bottom: 2rem; }
+
+    @media (max-width: 1024px) {
+      .tier-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .why-grid, .process-steps { grid-template-columns: 1fr; }
+      .tier-grid { grid-template-columns: 1fr; }
+      .benefits-layout { grid-template-columns: 1fr; }
+      .form-section { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+      <span class="nav-logo-text">Barangay<span>AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+      <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+      <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+    </ul>
+    <a href="partners.html" class="btn btn-primary btn-sm nav-cta">Contact Us</a>
+    <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a><a href="program.html">Program</a><a href="platform.html">Platform</a>
+  <a href="partners.html">Partners</a><a href="support.html">Support</a><a href="about.html">About</a>
+  <div class="nav-mobile-cta">
+    <a href="partners.html" class="btn btn-primary">Partner With Us</a>
+    <a href="support.html" class="btn btn-outline">Support the Mission</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="section-label">Partnership Program</span>
+      <h1>Partner With<br />BarangayAI</h1>
+      <p>Bring AI tools, education, and the BarangayAI Operating System to your community. For barangay captains, municipal mayors, national agencies, and government partners ready to lead the AI transformation of Filipino communities.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
+        <a href="#inquiry-form" class="btn btn-white btn-lg">Submit Partnership Inquiry</a>
+        <a href="#tiers" class="btn btn-outline-white btn-lg">View Partnership Tiers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PARTNER -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Why Partner</span>
+      <h2>Why LGUs Choose BarangayAI</h2>
+      <p class="section-sub">More than a technology platform — a complete community AI partnership with training, support, and ongoing program development included.</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <h4>Immediate Impact</h4>
+        <p>See results within weeks, not years. Our rapid deployment model gets AI tools in residents' hands fast — with measurable outcomes from day one.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎓</div>
+        <h4>Training Included</h4>
+        <p>We train your staff, your community facilitators, and your barangay officials to run programs independently — no dependency on outside experts.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h4>Accessible for All LGUs</h4>
+        <p>Partnership structures designed for barangays of every size and budget — from fully subsidized pilots to municipal-scale programs.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏛️</div>
+        <h4>Government Alignment</h4>
+        <p>Programs aligned with national mandates from DICT, DOST, DILG, and TESDA — supporting your compliance and reporting requirements.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <h4>Full Transparency</h4>
+        <p>Real-time dashboards, monthly impact reports, and complete visibility into program outcomes — for your LGU and your constituents.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h4>Long-Term Relationship</h4>
+        <p>We're not a vendor — we're a community partner. We grow with you, adapt programs to your community's needs, and remain committed for the long term.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP TIERS -->
+<section id="tiers" style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Partnership Tiers</span>
+      <h2>Find the Right Partnership Level</h2>
+      <p class="section-sub">From a single pilot barangay to a province-wide AI rollout — BarangayAI has a partnership structure built for your scope and scale.</p>
+    </div>
+    <div class="tier-grid reveal">
+      <div class="tier-card">
+        <div class="tier-name">Tier 1</div>
+        <h3>Pilot Barangay</h3>
+        <p>Ideal for barangay captains ready to be first movers in their municipality. A focused pilot with full BarangayAI support.</p>
+        <ul class="tier-features">
+          <li>BarangayAI OS deployment</li>
+          <li>AI citizen chatbot setup</li>
+          <li>Community AI training workshops (2)</li>
+          <li>Facilitator training (1 person)</li>
+          <li>3-month pilot program</li>
+          <li>Impact report for LGU</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#inquiry-form" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1.5rem">Apply as Pilot Barangay</a>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-badge">Most Popular</div>
+        <div class="tier-name">Tier 2</div>
+        <h3>Municipal Partner</h3>
+        <p>For municipal mayors deploying AI across multiple barangays with a coordinated rollout strategy.</p>
+        <ul class="tier-features">
+          <li>Multi-barangay OS deployment</li>
+          <li>Full six-pillar program access</li>
+          <li>Community training series</li>
+          <li>Facilitator training (up to 5)</li>
+          <li>6-month program cycle</li>
+          <li>Municipal coordination support</li>
+          <li>Analytics dashboard access</li>
+          <li>Monthly reporting</li>
+          <li>DILG compliance support</li>
+        </ul>
+        <a href="#inquiry-form" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem">Apply as Municipal Partner</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Tier 3</div>
+        <h3>Provincial Partner</h3>
+        <p>Province-wide AI deployment working directly with the governor's office and municipal governments.</p>
+        <ul class="tier-features">
+          <li>Province-wide rollout plan</li>
+          <li>Customized program design</li>
+          <li>Train-the-trainer program</li>
+          <li>Provincial analytics hub</li>
+          <li>12-month program cycle</li>
+          <li>Executive reporting</li>
+          <li>Media & PR support</li>
+          <li>National agency coordination</li>
+        </ul>
+        <a href="#inquiry-form" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1.5rem">Inquire for Province</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-name">Tier 4</div>
+        <h3>National Partner</h3>
+        <p>For national government agencies — DICT, DOST, DILG, TESDA — seeking a scalable AI rollout partner for nationwide programs.</p>
+        <ul class="tier-features">
+          <li>National-scale deployment plan</li>
+          <li>Interoperability with gov systems</li>
+          <li>Custom module development</li>
+          <li>Nationwide facilitator network</li>
+          <li>Research & impact studies</li>
+          <li>Policy alignment support</li>
+          <li>Dedicated account team</li>
+          <li>Co-branded programs</li>
+        </ul>
+        <a href="#inquiry-form" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1.5rem">Contact for National Program</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EARLY PARTNER CALLOUT -->
+<section style="background: var(--white); padding: 0 0 2rem;">
+  <div class="container">
+    <div class="early-partner-callout">
+      <h3>🌟 Early Partner Advantage</h3>
+      <p>Barangays and LGUs that join as pilot partners now will receive <strong>priority access</strong>
+      to the full BarangayAI Operating System when it launches in 2026 — at no additional cost during
+      the pilot period. The chatbot and training programs are available immediately.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT PARTNERS RECEIVE -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Partner Benefits</span>
+      <h2>What Your Community Receives</h2>
+      <p class="section-sub">Every BarangayAI partnership includes technology, training, and ongoing support — so your community gets real outcomes, not just another app.</p>
+    </div>
+    <div class="benefits-layout reveal">
+      <div>
+        <h4 style="margin-bottom:1.25rem">Technology & Platform</h4>
+        <div class="benefit-item">
+          <div class="benefit-icon">🖥️</div>
+          <div>
+            <h5>BarangayAI OS Deployment</h5>
+            <p>Full platform setup, configuration for your community's needs, and integration with existing barangay systems where applicable.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🤖</div>
+          <div>
+            <h5>AI Citizen Assistant</h5>
+            <p>A customized AI chatbot for your barangay — trained on your local services, ordinances, and community information.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">📊</div>
+          <div>
+            <h5>Analytics & Reporting</h5>
+            <p>Real-time dashboard for barangay officials and automated monthly impact reports for LGU accountability.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🔒</div>
+          <div>
+            <h5>Privacy-Compliant Infrastructure</h5>
+            <p>Full compliance with the Philippine Data Privacy Act (RA 10173) — protecting your residents' information.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom:1.25rem">Training & Support</h4>
+        <div class="benefit-item">
+          <div class="benefit-icon">👨‍🏫</div>
+          <div>
+            <h5>Facilitator Training</h5>
+            <p>We train community members to become certified AI facilitators who can lead programs independently — building lasting local capacity.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎓</div>
+          <div>
+            <h5>Community AI Workshops</h5>
+            <p>Structured training sessions for residents covering AI literacy, livelihoods, business tools, and more — adapted for your community.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🛠️</div>
+          <div>
+            <h5>Technical Support</h5>
+            <p>Dedicated support for barangay staff — troubleshooting, updates, and ongoing optimization of all platform features.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">📋</div>
+          <div>
+            <h5>Compliance Documentation</h5>
+            <p>All the documentation your LGU needs for national government compliance, including DICT and DILG reporting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP PROCESS -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">How It Works</span>
+      <h2>From Inquiry to Impact in Three Steps</h2>
+      <p class="section-sub">We've designed the partnership process to be as simple as possible — so barangay officials can focus on their communities, not on paperwork.</p>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <h4>Submit Inquiry</h4>
+        <p>Complete the form below. Our team will contact you within 48 hours to schedule an initial consultation — free, with no commitment required.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <h4>Community Assessment</h4>
+        <p>We work with your LGU to understand community needs, existing infrastructure, and program goals. This shapes a customized deployment plan for your barangay.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <h4>Deploy & Support</h4>
+        <p>We deploy the BarangayAI OS, train your facilitators, launch community programs, and provide ongoing support as your AI journey grows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Common Questions</span>
+      <h2>Questions from Barangay Officials</h2>
+      <p class="section-sub">Answers to what LGUs ask us most — about cost, technical requirements, and what partnership really means.</p>
+    </div>
+    <div style="max-width:760px" class="reveal">
+      <div class="faq-item open">
+        <div class="faq-question">
+          Does our barangay need to be technically advanced to partner with BarangayAI?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          No — we specifically designed BarangayAI for communities without existing digital infrastructure. You need nothing more than an internet connection and willing community members. We handle all technical setup, and our training programs are built for non-technical users.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          How much does the partnership cost?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Costs vary by partnership tier and program scope. Pilot Barangay partnerships are fully subsidized through our donor and support programs — qualifying barangays pay nothing. Municipal and provincial programs have investment structures aligned with LGU budgets. Contact us and we'll design a partnership that works for your situation.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Is BarangayAI aligned with DICT and DILG digital governance programs?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Yes. Our programs are designed to complement and support national digital governance mandates, including the eGov SuperApp initiative and DICT's digital literacy programs. We provide the compliance documentation LGUs need for national reporting requirements.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          What if our barangay is in a remote area with limited internet?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          The BarangayAI OS is optimized for low-bandwidth environments and includes offline-capable learning modules for areas with intermittent connectivity. We also work with community internet access points, school computer labs, and shared devices where individual smartphone access is limited.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          How does BarangayAI protect the privacy of our residents?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          Full compliance with the Philippine Data Privacy Act (RA 10173) is built into everything we do. Resident data is never sold to third parties. We are transparent about how all data is collected, used, and stored — and we provide barangay officials with full control over their community's data. See our <a href="privacy.html">Privacy Policy</a> for details.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          How long does it take to deploy BarangayAI in our community?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-answer">
+          A Pilot Barangay deployment typically takes 2–4 weeks from signed partnership agreement to launch — including platform setup, staff orientation, and the first community training session. Municipal and provincial rollouts follow a structured timeline agreed upon with your LGU during the assessment phase.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM -->
+<section id="inquiry-form" style="background: var(--white);">
+  <div class="container">
+    <div style="max-width:760px;margin:0 auto">
+      <div class="section-header centered reveal">
+        <span class="section-label">Apply Now</span>
+        <h2>Submit a Partnership Inquiry</h2>
+        <p class="section-sub">
+          Tell us about your community. Our team will respond within 48 hours to schedule a free initial consultation — no commitment required.
+        </p>
+      </div>
+      <div class="form-section reveal">
+        <h3>Partnership Inquiry Form</h3>
+        <p>All fields help us understand your community so we can recommend the right partnership tier and program approach.</p>
+        <form data-form="partner-inquiry" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="p-name">Full Name *</label>
+              <input type="text" id="p-name" name="name" class="form-control" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-position">Position / Title *</label>
+              <input type="text" id="p-position" name="position" class="form-control" placeholder="e.g. Barangay Captain" required />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="p-barangay">Barangay / Municipality *</label>
+              <input type="text" id="p-barangay" name="barangay" class="form-control" placeholder="Barangay & Municipality" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-province">Province *</label>
+              <input type="text" id="p-province" name="province" class="form-control" placeholder="Province" required />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="p-email">Email Address *</label>
+              <input type="email" id="p-email" name="email" class="form-control" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-phone">Mobile Number *</label>
+              <input type="tel" id="p-phone" name="phone" class="form-control" placeholder="+63 9XX XXX XXXX" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="p-tier">Partnership Tier of Interest</label>
+            <select id="p-tier" name="tier" class="form-control">
+              <option value="">— Select a tier —</option>
+              <option value="pilot">Tier 1 — Pilot Barangay</option>
+              <option value="municipal">Tier 2 — Municipal Partner</option>
+              <option value="provincial">Tier 3 — Provincial Partner</option>
+              <option value="national">Tier 4 — National Partner / Government Agency</option>
+              <option value="unsure">I'm not sure yet — help me decide</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="p-population">Approximate Barangay Population</label>
+            <select id="p-population" name="population" class="form-control">
+              <option value="">— Select range —</option>
+              <option>Under 500 residents</option>
+              <option>500–2,000 residents</option>
+              <option>2,000–10,000 residents</option>
+              <option>10,000–50,000 residents</option>
+              <option>Over 50,000 (municipality/city)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="p-message">Tell Us About Your Community *</label>
+            <textarea id="p-message" name="message" class="form-control" placeholder="What are the biggest challenges your barangay faces? What AI programs interest you most? Any specific needs or context we should know?" required></textarea>
+          </div>
+          <div class="form-feedback" style="display:none"></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">
+            Submit Partnership Inquiry →
+          </button>
+          <p style="font-size:.82rem;color:var(--gray);margin-top:1rem;text-align:center">
+            By submitting this form, you agree to our <a href="privacy.html">Privacy Policy</a>. We will never share your information with third parties.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+          <span class="nav-logo-text">Barangay<span>AI</span></span>
+        </a>
+        <p>Empowering Every Barangay. Enabling Every Filipino. Building the Future Together.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">📘</a><a href="#" class="social-btn">💼</a>
+          <a href="mailto:info@barangayai.com" class="social-btn">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+          <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+          <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Partnership Tiers</h5>
+        <ul class="footer-links">
+          <li><a href="#tiers">Pilot Barangay</a></li>
+          <li><a href="#tiers">Municipal Partner</a></li>
+          <li><a href="#tiers">Provincial Partner</a></li>
+          <li><a href="#tiers">National Partner</a></li>
+          <li><a href="#inquiry-form">Submit Inquiry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span>✉️</span><a href="mailto:info@barangayai.com" style="color:rgba(255,255,255,.6)">info@barangayai.com</a></div>
+          <div class="footer-contact-item"><span>📍</span><span>Philippines & Canada</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BarangayAI. Founded by <strong style="color:rgba(255,255,255,.8)">Ian Flores</strong>. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a> · <a href="about.html">About</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

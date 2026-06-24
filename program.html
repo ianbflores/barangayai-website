@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program — BarangayAI Six Pillars of Community Impact</title>
+  <meta name="description" content="Explore BarangayAI's six program pillars: AI education, livelihoods, small business, barangay government, agriculture, and community health." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pillar-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar-section:last-of-type { border-bottom: none; }
+    .pillar-section:nth-child(even) { background: var(--white); }
+    .pillar-section:nth-child(odd) { background: var(--warm-white); }
+
+    .pillar-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .pillar-layout.reverse { direction: rtl; }
+    .pillar-layout.reverse > * { direction: ltr; }
+
+    .pillar-meta { display: flex; flex-wrap: wrap; gap: .65rem; margin-bottom: 1.5rem; }
+
+    .pillar-outcomes {
+      background: var(--mint);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .pillar-outcomes h5 {
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      margin-bottom: 1rem;
+    }
+    .pillar-outcomes ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .pillar-outcomes li {
+      display: flex; align-items: flex-start; gap: .65rem;
+      font-size: .9rem; color: var(--gray-dark);
+    }
+    .pillar-outcomes li::before { content: '✓'; color: var(--green); font-weight: 900; flex-shrink: 0; }
+
+    .pillar-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, #0F2035 100%);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      color: rgba(255,255,255,.75);
+      position: sticky;
+      top: 100px;
+    }
+    .pillar-visual-num {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(29,158,117,.25);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .pillar-visual-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .pillar-visual h3 { color: var(--white); margin-bottom: 1rem; }
+    .pillar-visual p { font-size: .9rem; margin-bottom: 1.5rem; }
+
+    .target-list { display: flex; flex-direction: column; gap: .5rem; }
+    .target-item {
+      display: flex; align-items: center; gap: .65rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-sm);
+      padding: .6rem 1rem;
+      font-size: .85rem;
+    }
+
+    .use-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 1.5rem; }
+    .use-case {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 1rem;
+      font-size: .85rem;
+    }
+    .use-case-title { font-weight: 700; color: var(--white); margin-bottom: .3rem; font-size: .88rem; }
+
+    .program-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+      padding: 0;
+    }
+    .program-nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .program-nav-inner::-webkit-scrollbar { display: none; }
+    .program-nav-link {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 1rem 1.25rem;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--gray);
+      white-space: nowrap;
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      transition: all var(--transition);
+    }
+    .program-nav-link:hover { color: var(--green); border-bottom-color: var(--green); }
+
+    @media (max-width: 768px) {
+      .pillar-layout, .pillar-layout.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .pillar-visual { position: static; }
+      .use-case-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+      <span class="nav-logo-text">Barangay<span>AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="program.html">Program</a></li>
+      <li><a href="platform.html">Platform</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="partners.html" class="btn btn-primary btn-sm nav-cta">Contact Us</a>
+    <button class="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a>
+  <a href="program.html">Program</a>
+  <a href="platform.html">Platform</a>
+  <a href="partners.html">Partners</a>
+  <a href="support.html">Support</a>
+  <a href="about.html">About</a>
+  <div class="nav-mobile-cta">
+    <a href="partners.html" class="btn btn-primary">Partner With Us</a>
+    <a href="support.html" class="btn btn-outline">Support the Mission</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="section-label">Our Programs</span>
+      <h1>Six Pillars of<br />Community Impact</h1>
+      <p>Every pillar addresses a documented need in Filipino communities. Together, they form a complete ecosystem for AI-powered barangay development — from the school to the farm, the marketplace to the health center.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR NAV -->
+<nav class="program-nav" aria-label="Program navigation">
+  <div class="program-nav-inner">
+    <a href="#pillar-1" class="program-nav-link">📖 Education</a>
+    <a href="#pillar-2" class="program-nav-link">💰 Livelihoods</a>
+    <a href="#pillar-3" class="program-nav-link">🏪 Business</a>
+    <a href="#pillar-4" class="program-nav-link">🏛️ Government</a>
+    <a href="#pillar-5" class="program-nav-link">🌾 Agriculture</a>
+    <a href="#pillar-6" class="program-nav-link">❤️ Health</a>
+  </div>
+</nav>
+
+<!-- PILLAR 1 -->
+<section class="pillar-section" id="pillar-1">
+  <div class="container">
+    <div class="pillar-layout reveal">
+      <div>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Pillar 01</span>
+          <span class="badge badge-navy">Education & Literacy</span>
+        </div>
+        <span class="section-label">AI Education for Citizens</span>
+        <h2>Empowering Every Filipino with AI Knowledge</h2>
+        <p>AI literacy is the foundation of everything BarangayAI does. Before tools can help a community, that community needs to understand what AI is, how it works, and how to use it safely and confidently. Our education programs are built in Filipino, designed for every skill level, and delivered in formats that work — whether online, offline, or at the barangay hall.</p>
+        <p>We believe that AI education is not a privilege for those in Metro Manila with university degrees. Every tricycle driver, every market vendor, every OFW's family member deserves to understand the technology shaping their future.</p>
+
+        <h4 style="margin:1.5rem 0 .75rem">Who Benefits</h4>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Students</span>
+          <span class="badge badge-green">Job Seekers</span>
+          <span class="badge badge-green">Freelancers</span>
+          <span class="badge badge-green">OFW Families</span>
+          <span class="badge badge-green">Seniors & Lifelong Learners</span>
+          <span class="badge badge-green">Community Leaders</span>
+        </div>
+
+        <h4 style="margin:1.5rem 0 .75rem">What We Teach</h4>
+        <p>From "What is AI?" for complete beginners to prompt engineering, AI tool use for work, and digital safety — our curriculum meets learners where they are and takes them as far as they want to go.</p>
+
+        <div class="pillar-outcomes">
+          <h5>✦ Key Outcomes</h5>
+          <ul>
+            <li>Improved digital and AI literacy across all age groups</li>
+            <li>Better employment opportunities through in-demand skills</li>
+            <li>Increased confidence in using technology for daily life</li>
+            <li>Reduced vulnerability to online scams and misinformation</li>
+            <li>Stronger foundation for advanced AI livelihood training</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="pillar-visual">
+          <div class="pillar-visual-num">01</div>
+          <div class="pillar-visual-icon">📖</div>
+          <h3>AI Education for Citizens</h3>
+          <p>Practical, Filipino-language AI training — for every skill level, every community, everywhere in the Philippines.</p>
+          <div class="target-list">
+            <div class="target-item">📱 Mobile-first learning formats</div>
+            <div class="target-item">🇵🇭 Filipino & regional language content</div>
+            <div class="target-item">🎓 Certificates of completion</div>
+            <div class="target-item">👨‍🏫 Community facilitator model</div>
+            <div class="target-item">🌐 Online and offline delivery</div>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case">
+              <div class="use-case-title">AI Basics Workshop</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Introductory sessions at the barangay hall — no prior tech experience needed</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-title">Youth AI Bootcamp</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Intensive skills training for students and young adults entering the workforce</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR 2 -->
+<section class="pillar-section" id="pillar-2">
+  <div class="container">
+    <div class="pillar-layout reverse reveal">
+      <div>
+        <div class="pillar-visual">
+          <div class="pillar-visual-num">02</div>
+          <div class="pillar-visual-icon">💰</div>
+          <h3>AI Livelihood & Economic Opportunities</h3>
+          <p>Turn AI skills into sustainable income — right from the barangay, with a phone or computer and an internet connection.</p>
+          <div class="target-list">
+            <div class="target-item">💻 AI Virtual Assistance training</div>
+            <div class="target-item">✍️ AI Content Creation & Copywriting</div>
+            <div class="target-item">🛍️ Online Selling & E-Commerce</div>
+            <div class="target-item">🎨 AI Graphic Design tools</div>
+            <div class="target-item">🌍 International freelancing platforms</div>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case">
+              <div class="use-case-title">AI Freelancer Program</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Training residents to offer AI-powered services to global clients via Upwork, Fiverr, and more</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-title">Home-Based Work Hub</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Community digital centers where residents can work and earn without leaving their barangay</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Pillar 02</span>
+          <span class="badge badge-gold">Economic Empowerment</span>
+        </div>
+        <span class="section-label">AI Livelihood & Economic Opportunities</span>
+        <h2>New Income Streams for Every Filipino</h2>
+        <p>One of the most immediate ways AI can transform a barangay is by creating real, sustainable income for its residents. The global demand for AI-powered services — content creation, virtual assistance, data processing, social media management — has never been higher, and the Philippines already has the talent, the English proficiency, and the drive to lead.</p>
+        <p>BarangayAI's livelihood pillar gives residents the skills, the tools, and the connections to access that demand — from their home, at flexible hours, on their own terms.</p>
+
+        <h4 style="margin:1.5rem 0 .75rem">Who Benefits</h4>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Stay-at-Home Parents</span>
+          <span class="badge badge-green">Returning OFWs</span>
+          <span class="badge badge-green">Fresh Graduates</span>
+          <span class="badge badge-green">Unemployed Residents</span>
+          <span class="badge badge-green">Micro-Entrepreneurs</span>
+        </div>
+
+        <div class="pillar-outcomes">
+          <h5>✦ Key Outcomes</h5>
+          <ul>
+            <li>New home-based income opportunities for barangay residents</li>
+            <li>Access to the global AI services freelance market</li>
+            <li>Reduced need for residents to migrate for work</li>
+            <li>Stronger local economic circulation</li>
+            <li>Community-wide increase in digital income capacity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR 3 -->
+<section class="pillar-section" id="pillar-3">
+  <div class="container">
+    <div class="pillar-layout reveal">
+      <div>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Pillar 03</span>
+          <span class="badge badge-navy">Small Business Growth</span>
+        </div>
+        <span class="section-label">AI for Small Businesses</span>
+        <h2>Helping Local Businesses Grow, Compete, and Thrive</h2>
+        <p>The sari-sari store. The carinderia. The local tailor, the market vendor, the home baker. These small businesses are the economic heartbeat of every barangay — and they deserve access to the same AI tools that large corporations use to market themselves, serve customers, and operate efficiently.</p>
+        <p>BarangayAI's business pillar makes enterprise-level AI tools accessible and affordable for the smallest Filipino businesses — with training, templates, and ongoing support.</p>
+
+        <h4 style="margin:1.5rem 0 .75rem">Who Benefits</h4>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Sari-Sari Stores</span>
+          <span class="badge badge-green">Carinderias</span>
+          <span class="badge badge-green">Market Vendors</span>
+          <span class="badge badge-green">Service Providers</span>
+          <span class="badge badge-green">MSMEs</span>
+          <span class="badge badge-green">Home-Based Businesses</span>
+        </div>
+
+        <h4 style="margin:1.5rem 0 .75rem">AI Tools for Business</h4>
+        <p>Marketing automation, social media content generation, AI customer support, business planning assistants, inventory guidance, and competitive analysis — all made accessible for businesses with limited budgets and technical resources.</p>
+
+        <div class="pillar-outcomes">
+          <h5>✦ Key Outcomes</h5>
+          <ul>
+            <li>Increased sales through better marketing and online visibility</li>
+            <li>Reduced costs through operational automation</li>
+            <li>Improved customer service and satisfaction</li>
+            <li>Better business planning and financial decision-making</li>
+            <li>Stronger ability to compete with larger businesses</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="pillar-visual">
+          <div class="pillar-visual-num">03</div>
+          <div class="pillar-visual-icon">🏪</div>
+          <h3>AI for Small Businesses</h3>
+          <p>Enterprise AI tools, made accessible for the smallest Filipino business — from sari-sari to MSME.</p>
+          <div class="target-list">
+            <div class="target-item">📣 AI Social Media Content Generator</div>
+            <div class="target-item">🤖 Customer Support Automation</div>
+            <div class="target-item">📊 Business Planning Assistant</div>
+            <div class="target-item">💬 AI-Powered Promotions</div>
+            <div class="target-item">📦 Inventory & Operations Guidance</div>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case">
+              <div class="use-case-title">Negosyo AI Toolkit</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Ready-to-use AI templates for Facebook posts, product descriptions, and customer messages</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-title">Business Growth Workshop</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Hands-on training on using AI to grow a small business — no tech background needed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR 4 -->
+<section class="pillar-section" id="pillar-4">
+  <div class="container">
+    <div class="pillar-layout reverse reveal">
+      <div>
+        <div class="pillar-visual">
+          <div class="pillar-visual-num">04</div>
+          <div class="pillar-visual-icon">🏛️</div>
+          <h3>AI for Barangay Government</h3>
+          <p>Modern governance tools that help barangay officials serve citizens faster, better, and with less paperwork.</p>
+          <div class="target-list">
+            <div class="target-item">🤖 Citizen Service AI Chatbot</div>
+            <div class="target-item">📄 Automated Document Generation</div>
+            <div class="target-item">📋 Complaint Tracking System</div>
+            <div class="target-item">📢 Community Announcements AI</div>
+            <div class="target-item">📊 Admin & Reporting Automation</div>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case">
+              <div class="use-case-title">Barangay Clearance AI</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Residents request and receive barangay clearances faster through an AI-assisted system</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-title">Chatbot for Constituents</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">24/7 AI assistant answering residents' questions about services, requirements, and schedules</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Pillar 04</span>
+          <span class="badge badge-navy">Government Modernization</span>
+        </div>
+        <span class="section-label">AI for Barangay Government</span>
+        <h2>Modernizing Public Service, One Barangay at a Time</h2>
+        <p>Barangay officials are often overwhelmed — serving hundreds or thousands of residents with minimal staff, aging systems, and mountains of paperwork. AI can transform this reality without replacing anyone. It can automate repetitive tasks, answer routine citizen inquiries, generate documents, and give officials the information they need to make better decisions for their community.</p>
+        <p>BarangayAI works directly with barangay captains and kagawads to implement AI in a way that respects their existing workflows and builds their confidence as technology leaders.</p>
+
+        <h4 style="margin:1.5rem 0 .75rem">Who Benefits</h4>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Barangay Captains</span>
+          <span class="badge badge-green">Kagawads</span>
+          <span class="badge badge-green">Barangay Secretaries</span>
+          <span class="badge badge-green">Barangay Treasurers</span>
+          <span class="badge badge-green">Residents Seeking Services</span>
+        </div>
+
+        <div class="pillar-outcomes">
+          <h5>✦ Key Outcomes</h5>
+          <ul>
+            <li>Faster and more efficient public service delivery</li>
+            <li>Significantly reduced administrative workload</li>
+            <li>Better citizen engagement and satisfaction</li>
+            <li>More transparent and accountable governance</li>
+            <li>Compliance with national digital governance mandates</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR 5 -->
+<section class="pillar-section" id="pillar-5">
+  <div class="container">
+    <div class="pillar-layout reveal">
+      <div>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Pillar 05</span>
+          <span class="badge badge-navy">Agriculture & Fisheries</span>
+        </div>
+        <span class="section-label">AI for Farmers & Fisherfolk</span>
+        <h2>Bringing AI Intelligence to Every Farm and Fishing Boat</h2>
+        <p>The Philippines is an agricultural nation, yet most farmers and fisherfolk make decisions the same way their grandparents did — based on tradition, intuition, and luck. AI can give them something their grandparents never had: real-time data, predictive insights, and intelligent recommendations that improve every decision they make.</p>
+        <p>BarangayAI's agriculture pillar uses AI to level the playing field for the millions of Filipino farmers and fisherfolk who deserve better tools, better prices, and better futures.</p>
+
+        <h4 style="margin:1.5rem 0 .75rem">Who Benefits</h4>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Rice & Corn Farmers</span>
+          <span class="badge badge-green">Vegetable Growers</span>
+          <span class="badge badge-green">Fisherfolk</span>
+          <span class="badge badge-green">Agricultural Cooperatives</span>
+          <span class="badge badge-green">Rural Communities</span>
+        </div>
+
+        <div class="pillar-outcomes">
+          <h5>✦ Key Outcomes</h5>
+          <ul>
+            <li>Improved crop yields through better planning and pest management</li>
+            <li>Reduced post-harvest losses through AI-guided decisions</li>
+            <li>Better market prices through real-time pricing intelligence</li>
+            <li>Increased income for farm households</li>
+            <li>More resilient agriculture in the face of climate change</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="pillar-visual">
+          <div class="pillar-visual-num">05</div>
+          <div class="pillar-visual-icon">🌾</div>
+          <h3>AI for Farmers & Fisherfolk</h3>
+          <p>Practical AI tools for the people who feed the Philippines — on their phones, in their fields, in their language.</p>
+          <div class="target-list">
+            <div class="target-item">🌱 AI Crop Planning & Advisory</div>
+            <div class="target-item">🐛 Pest & Disease Identification</div>
+            <div class="target-item">🌦️ Weather Intelligence Integration</div>
+            <div class="target-item">💹 Market Pricing Insights</div>
+            <div class="target-item">🐟 Fishing Condition Guidance</div>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case">
+              <div class="use-case-title">Magsasaka AI Assistant</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Ask questions about your farm in Filipino and get AI-powered answers with practical advice</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-title">Palengke Price Tracker</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Real-time market price information so farmers can sell at the right time and place</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR 6 -->
+<section class="pillar-section" id="pillar-6">
+  <div class="container">
+    <div class="pillar-layout reverse reveal">
+      <div>
+        <div class="pillar-visual">
+          <div class="pillar-visual-num">06</div>
+          <div class="pillar-visual-icon">❤️</div>
+          <h3>AI for Community Health & Wellness</h3>
+          <p>Making health information accessible, understandable, and actionable for every Filipino family — in their language, at any hour.</p>
+          <div class="target-list">
+            <div class="target-item">💊 Medication Information AI</div>
+            <div class="target-item">🥗 Nutrition & Wellness Guidance</div>
+            <div class="target-item">🏥 Health Facility Locator</div>
+            <div class="target-item">🌡️ Symptom Information Tool</div>
+            <div class="target-item">👨‍👩‍👧 Family Health Companion</div>
+          </div>
+          <div class="use-case-grid">
+            <div class="use-case">
+              <div class="use-case-title">Barangay Health AI</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">AI assistant for community health workers — helping them serve more residents with better information</p>
+            </div>
+            <div class="use-case">
+              <div class="use-case-title">Family Wellness Companion</div>
+              <p style="color:rgba(255,255,255,.55);margin:0;font-size:.82rem">Simple health information chatbot that families can use day or night, in Filipino</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Pillar 06</span>
+          <span class="badge badge-navy">Community Health</span>
+        </div>
+        <span class="section-label">AI for Community Health & Wellness</span>
+        <h2>Healthier Communities Through Accessible AI</h2>
+        <p>In many Philippine barangays, access to reliable health information is a luxury. Residents may live hours from a hospital, have limited access to doctors, or face barriers of language and literacy. AI cannot replace doctors — but it can make health information more accessible, help communities understand preventive care, and empower health workers to serve more people more effectively.</p>
+        <p>BarangayAI's health pillar is built with safety and responsibility at its core — always directing users to professional care when needed, while supporting informed, healthier daily decisions.</p>
+
+        <h4 style="margin:1.5rem 0 .75rem">Who Benefits</h4>
+        <div class="pillar-meta">
+          <span class="badge badge-green">Families</span>
+          <span class="badge badge-green">Mothers & Children</span>
+          <span class="badge badge-green">Elderly Residents</span>
+          <span class="badge badge-green">Barangay Health Workers</span>
+          <span class="badge badge-green">Community Clinics</span>
+        </div>
+
+        <div class="pillar-outcomes">
+          <h5>✦ Key Outcomes</h5>
+          <ul>
+            <li>Better health awareness and preventive care practices</li>
+            <li>Improved family wellness through accessible information</li>
+            <li>Empowered community health workers serving more residents</li>
+            <li>Stronger community resilience against health challenges</li>
+            <li>Reduced health information gaps in underserved areas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-left">
+        <span class="section-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Get Started</span>
+        <h2>Ready to Bring These Programs to Your Barangay?</h2>
+        <p>Whether you're a barangay captain, a municipal mayor, a national agency, or a donor — there's a way to bring these six pillars to the communities that need them most.</p>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card">
+          <h4>🏛️ Partner Your Barangay</h4>
+          <p>Bring all six pillars to your community through the BarangayAI partnership program. Start with a free needs assessment.</p>
+          <a href="partners.html" class="btn btn-white btn-sm">Become a Partner →</a>
+        </div>
+        <div class="cta-card">
+          <h4>🖥️ Explore the Platform</h4>
+          <p>See how the BarangayAI OS delivers all six pillars through a single, integrated community platform.</p>
+          <a href="platform.html" class="btn btn-outline-white btn-sm">See the Platform →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+          <span class="nav-logo-text">Barangay<span>AI</span></span>
+        </a>
+        <p>Empowering Every Barangay. Enabling Every Filipino. Building the Future Together.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
+          <a href="mailto:info@barangayai.com" class="social-btn" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="program.html">Program</a></li>
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Six Pillars</h5>
+        <ul class="footer-links">
+          <li><a href="#pillar-1">AI Education</a></li>
+          <li><a href="#pillar-2">AI Livelihoods</a></li>
+          <li><a href="#pillar-3">AI for Business</a></li>
+          <li><a href="#pillar-4">AI for Government</a></li>
+          <li><a href="#pillar-5">AI for Agriculture</a></li>
+          <li><a href="#pillar-6">AI for Health</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span>✉️</span><a href="mailto:info@barangayai.com" style="color:rgba(255,255,255,.6)">info@barangayai.com</a></div>
+          <div class="footer-contact-item"><span>📍</span><span>Philippines & Canada</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BarangayAI. Founded by <strong style="color:rgba(255,255,255,.8)">Ian Flores</strong>. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a> · <a href="about.html">About</a> · <a href="partners.html">Contact</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

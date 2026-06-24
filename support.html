@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Fund the BarangayAI Mission</title>
+  <meta name="description" content="Support BarangayAI's mission to bring AI education and tools to every Filipino barangay. Fund training programs, technology access, and community outreach." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .impact-per-peso {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .peso-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .peso-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--green);
+    }
+    .peso-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--mint-mid); }
+    .peso-amount {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: .25rem;
+    }
+    .peso-card h4 { font-size: 1rem; margin-bottom: .5rem; }
+    .peso-card p { font-size: .87rem; color: var(--gray); margin: 0; }
+
+    .csr-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .csr-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .csr-card.featured {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(29,158,117,.1);
+    }
+    .csr-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .csr-tier-name {
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--green); margin-bottom: .4rem;
+    }
+    .csr-card h3 { margin-bottom: .5rem; }
+    .csr-price {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 900; color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .csr-price span { font-size: 1rem; font-weight: 500; color: var(--gray); }
+    .csr-card p { font-size: .9rem; margin-bottom: 1.25rem; }
+
+    .individual-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .individual-option {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .individual-option:hover, .individual-option.selected {
+      border-color: var(--green);
+      background: var(--mint);
+    }
+    .individual-option .amount {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 900; color: var(--navy);
+      margin-bottom: .25rem;
+    }
+    .individual-option .impact-label {
+      font-size: .78rem; color: var(--gray); line-height: 1.4;
+    }
+
+    .funding-section {
+      background: var(--navy);
+      padding: 5rem 0;
+    }
+    .funding-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .funding-text h2 { color: var(--white); }
+    .funding-text p { color: rgba(255,255,255,.7); margin-bottom: 1.25rem; }
+
+    .form-section {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .why-support {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .why-support-visual {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      color: var(--white);
+    }
+    .why-support-visual h3 { color: var(--white); margin-bottom: 1.5rem; }
+    .support-fact {
+      background: rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .support-fact-num {
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 900; color: var(--gold);
+    }
+    .support-fact-label { font-size: .9rem; color: rgba(255,255,255,.8); }
+
+    @media (max-width: 1024px) {
+      .impact-per-peso { grid-template-columns: repeat(2, 1fr); }
+      .csr-grid { grid-template-columns: 1fr 1fr; }
+      .individual-options { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .impact-per-peso, .csr-grid { grid-template-columns: 1fr; }
+      .funding-layout, .why-support { grid-template-columns: 1fr; }
+      .individual-options { grid-template-columns: repeat(2, 1fr); }
+      .form-section { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+      <span class="nav-logo-text">Barangay<span>AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+      <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+      <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+    </ul>
+    <a href="partners.html" class="btn btn-primary btn-sm nav-cta">Contact Us</a>
+    <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a><a href="program.html">Program</a><a href="platform.html">Platform</a>
+  <a href="partners.html">Partners</a><a href="support.html">Support</a><a href="about.html">About</a>
+  <div class="nav-mobile-cta">
+    <a href="partners.html" class="btn btn-primary">Partner With Us</a>
+    <a href="support.html" class="btn btn-outline">Support the Mission</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="section-label">Support the Mission</span>
+      <h1>Fund AI Access<br />for Every Barangay</h1>
+      <p>Your support makes it possible for communities that can't afford AI tools or training to access them for free. Every contribution funds real programs for real Filipinos in real barangays.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem">
+        <a href="#support-form" class="btn btn-white btn-lg">Support BarangayAI</a>
+        <a href="#where-funding-goes" class="btn btn-outline-white btn-lg">See Where Funds Go</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SUPPORT -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="why-support reveal">
+      <div>
+        <span class="section-label">Why It Matters</span>
+        <h2>The Philippines Needs This — Now</h2>
+        <p>AI is advancing faster than most governments can respond. The communities most likely to be left behind are also the most numerous — the 42,000+ barangays where millions of Filipinos live, work, and raise their families.</p>
+        <p>Without deliberate, funded intervention, the AI revolution will widen — not close — the gap between urban elites and rural communities. BarangayAI exists to prevent that outcome.</p>
+        <p>Your support does not fund overhead. It funds <strong>programs</strong> — training sessions, platform access, facilitator salaries, and community outreach that directly reaches Filipinos who would otherwise have no access to AI.</p>
+        <div style="margin-top:2rem">
+          <a href="#support-form" class="btn btn-primary btn-lg">Support BarangayAI Today</a>
+        </div>
+      </div>
+      <div>
+        <div class="why-support-visual">
+          <h3>The Numbers That Drive Us</h3>
+          <div class="support-fact">
+            <div class="support-fact-num">42,000+</div>
+            <div class="support-fact-label">Barangays with no AI access today</div>
+          </div>
+          <div class="support-fact">
+            <div class="support-fact-num">80%</div>
+            <div class="support-fact-label">Of Filipino jobs could be affected by AI in the next decade</div>
+          </div>
+          <div class="support-fact">
+            <div class="support-fact-num">₱0</div>
+            <div class="support-fact-label">National budget currently allocated to barangay-level AI training</div>
+          </div>
+          <p style="font-size:.88rem;color:rgba(255,255,255,.65);margin-top:1.25rem;margin-bottom:0">
+            The window to act is now. The communities that build AI literacy today will thrive tomorrow. Those that don't will be left behind.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE FUNDING GOES -->
+<section id="where-funding-goes" class="funding-section">
+  <div class="container">
+    <div class="funding-layout reveal">
+      <div class="funding-text">
+        <span class="section-label" style="background:rgba(29,158,117,.2);color:rgba(255,255,255,.9)">Transparency</span>
+        <h2>Where Every Peso Goes</h2>
+        <p>We believe donors deserve to know exactly how their contributions are used. Here's how BarangayAI allocates funding across our four core investment areas:</p>
+        <a href="#support-form" class="btn btn-white" style="margin-top:1.5rem">Fund a Program →</a>
+      </div>
+      <div>
+        <div class="funding-bar">
+          <div class="funding-label"><span>🎓 Training Programs & Facilitators</span><span style="color:rgba(255,255,255,.8);font-weight:700">45%</span></div>
+          <div class="funding-track"><div class="funding-fill" data-width="45%"></div></div>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.5);margin-top:.4rem">Paying community AI facilitators, developing curriculum, running workshops, and certifying trainers.</p>
+        </div>
+        <div class="funding-bar">
+          <div class="funding-label"><span>🖥️ Technology & Platform Access</span><span style="color:rgba(255,255,255,.8);font-weight:700">30%</span></div>
+          <div class="funding-track"><div class="funding-fill" data-width="30%"></div></div>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.5);margin-top:.4rem">Deploying and maintaining the BarangayAI OS, API costs, hosting, and device support for communities.</p>
+        </div>
+        <div class="funding-bar">
+          <div class="funding-label"><span>📣 Community Outreach</span><span style="color:rgba(255,255,255,.8);font-weight:700">15%</span></div>
+          <div class="funding-track"><div class="funding-fill" data-width="15%"></div></div>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.5);margin-top:.4rem">Reaching and enrolling residents, local events, barangay coordination, and awareness campaigns.</p>
+        </div>
+        <div class="funding-bar">
+          <div class="funding-label"><span>⚙️ Operations & Administration</span><span style="color:rgba(255,255,255,.8);font-weight:700">10%</span></div>
+          <div class="funding-track"><div class="funding-fill" data-width="10%"></div></div>
+          <p style="font-size:.83rem;color:rgba(255,255,255,.5);margin-top:.4rem">Core team salaries, legal compliance, reporting, and organizational infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT PER PESO -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Your Impact</span>
+      <h2>What Your Support Achieves</h2>
+      <p class="section-sub">Real, measurable outcomes for Filipino communities — directly funded by your contribution.</p>
+    </div>
+    <div class="impact-per-peso reveal">
+      <div class="peso-card">
+        <div class="peso-amount">₱1,000</div>
+        <h4>Reaches One Family</h4>
+        <p>Funds one family's participation in a community AI literacy workshop — covering materials, facilitator time, and platform access for 30 days.</p>
+      </div>
+      <div class="peso-card">
+        <div class="peso-amount">₱5,000</div>
+        <h4>Trains One Facilitator</h4>
+        <p>Covers the full certification training of one community AI facilitator — who will then go on to train 50–100 residents in their barangay.</p>
+      </div>
+      <div class="peso-card">
+        <div class="peso-amount">₱15,000</div>
+        <h4>Runs One Workshop</h4>
+        <p>Funds a full community AI training session for 30–50 residents, including facilitator, materials, and 3 months of platform access.</p>
+      </div>
+      <div class="peso-card">
+        <div class="peso-amount">₱50,000</div>
+        <h4>Launches One Pillar</h4>
+        <p>Deploys one complete program pillar (e.g., AI for Small Businesses or AI Education) in a pilot barangay for a full program cycle.</p>
+      </div>
+      <div class="peso-card">
+        <div class="peso-amount">₱150,000</div>
+        <h4>Funds a Full Pilot</h4>
+        <p>Covers a complete Pilot Barangay program — all six pillars, full platform deployment, facilitator training, and 6 months of support.</p>
+      </div>
+      <div class="peso-card">
+        <div class="peso-amount">₱500,000+</div>
+        <h4>Transforms a Municipality</h4>
+        <p>Enables a full municipal-scale rollout across multiple barangays — with coordinated deployment, training, and impact reporting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDIVIDUAL SUPPORTERS -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Individual Support</span>
+      <h2>Every Filipino Can Be Part of This</h2>
+      <p class="section-sub">You don't need to be a corporation or a foundation to make a difference. Individual supporters are the backbone of the BarangayAI community.</p>
+    </div>
+    <div class="individual-options reveal" id="amount-options">
+      <div class="individual-option" data-amount="500">
+        <div class="amount">₱500</div>
+        <div class="impact-label">Fund one resident's first AI workshop</div>
+      </div>
+      <div class="individual-option selected" data-amount="1000">
+        <div class="amount">₱1,000</div>
+        <div class="impact-label">Support one family's AI literacy journey</div>
+      </div>
+      <div class="individual-option" data-amount="2500">
+        <div class="amount">₱2,500</div>
+        <div class="impact-label">Help train 5 residents in AI livelihood skills</div>
+      </div>
+      <div class="individual-option" data-amount="5000">
+        <div class="amount">₱5,000</div>
+        <div class="impact-label">Certify one community AI facilitator</div>
+      </div>
+    </div>
+    <div class="text-center mt-3 reveal">
+      <a href="#support-form" class="btn btn-primary btn-lg">Support with Your Chosen Amount →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CSR PROGRAMS -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Corporate & Foundation Support</span>
+      <h2>Corporate CSR Partnership Opportunities</h2>
+      <p class="section-sub">BarangayAI offers corporate and foundation partners a credible, measurable platform for CSR investment in digital inclusion, education, and economic empowerment across the Philippines.</p>
+    </div>
+    <div class="csr-grid reveal">
+      <div class="csr-card">
+        <div class="csr-tier-name">Community Sponsor</div>
+        <h3>Barangay Champion</h3>
+        <div class="csr-price">₱150,000 <span>/ year</span></div>
+        <p>Fund a complete Pilot Barangay program — your brand associated with transforming one Filipino community through AI.</p>
+        <ul class="tier-features">
+          <li>Named community pilot sponsorship</li>
+          <li>Logo on BarangayAI materials</li>
+          <li>Impact report for CSR reporting</li>
+          <li>Employee volunteer opportunities</li>
+          <li>Social media recognition</li>
+        </ul>
+        <a href="#support-form" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1.25rem">Apply as Barangay Champion</a>
+      </div>
+      <div class="csr-card featured">
+        <div class="tier-badge">Recommended</div>
+        <div class="csr-tier-name">Municipal Sponsor</div>
+        <h3>Municipal Innovator</h3>
+        <div class="csr-price">₱500,000 <span>/ year</span></div>
+        <p>Fund a full municipal AI rollout — your organization leading digital transformation across an entire municipality and its barangays.</p>
+        <ul class="tier-features">
+          <li>Named municipal program sponsorship</li>
+          <li>Co-branded program materials</li>
+          <li>Executive impact presentations</li>
+          <li>Media coverage opportunities</li>
+          <li>Employee skills programs</li>
+          <li>Advisory board invitation</li>
+          <li>Detailed quarterly reporting</li>
+        </ul>
+        <a href="#support-form" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.25rem">Apply as Municipal Innovator</a>
+      </div>
+      <div class="csr-card">
+        <div class="csr-tier-name">National Sponsor</div>
+        <h3>National Changemaker</h3>
+        <div class="csr-price">₱2M+ <span>/ year</span></div>
+        <p>Become a founding corporate partner in the national expansion of BarangayAI — your brand at the center of the Philippines' AI inclusion story.</p>
+        <ul class="tier-features">
+          <li>Founding partner recognition</li>
+          <li>Program co-design rights</li>
+          <li>Province-wide deployment</li>
+          <li>Executive advisory seat</li>
+          <li>National media and PR support</li>
+          <li>Research and impact studies</li>
+          <li>Government engagement support</li>
+        </ul>
+        <a href="#support-form" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:1.25rem">Inquire as National Partner</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT INQUIRY FORM -->
+<section id="support-form" style="background: var(--white);">
+  <div class="container">
+    <div style="max-width:760px;margin:0 auto">
+      <div class="section-header centered reveal">
+        <span class="section-label">Get Started</span>
+        <h2>Support BarangayAI</h2>
+        <p class="section-sub">Tell us how you'd like to support the mission — whether as an individual donor, a foundation, or a corporate CSR partner. We'll respond within 48 hours.</p>
+      </div>
+      <div class="form-section reveal">
+        <h3>Support Inquiry Form</h3>
+        <p>All donations are used directly for community programs. A receipt and impact report will be provided for all contributions.</p>
+        <form data-form="support-inquiry" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="s-name">Full Name / Organization *</label>
+              <input type="text" id="s-name" name="name" class="form-control" placeholder="Your name or organization" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="s-email">Email Address *</label>
+              <input type="email" id="s-email" name="email" class="form-control" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-type">Support Type *</label>
+            <select id="s-type" name="type" class="form-control" required>
+              <option value="">— Select support type —</option>
+              <option value="individual">Individual Donor</option>
+              <option value="foundation">Foundation / NGO</option>
+              <option value="csr-barangay">Corporate CSR — Barangay Champion (₱150,000)</option>
+              <option value="csr-municipal">Corporate CSR — Municipal Innovator (₱500,000)</option>
+              <option value="csr-national">Corporate CSR — National Changemaker (₱2M+)</option>
+              <option value="inkind">In-Kind / Non-Monetary Support</option>
+              <option value="other">Other / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-amount">Intended Contribution Amount</label>
+            <input type="text" id="s-amount" name="amount" class="form-control" placeholder="e.g. ₱5,000 or $100 USD" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-interest">Area of Interest</label>
+            <select id="s-interest" name="interest" class="form-control">
+              <option value="">— Select area of interest —</option>
+              <option>AI Education & Literacy Programs</option>
+              <option>AI Livelihood & Economic Opportunity</option>
+              <option>AI for Small Businesses</option>
+              <option>AI for Barangay Government</option>
+              <option>AI for Farmers & Fisherfolk</option>
+              <option>AI for Community Health</option>
+              <option>Technology & Platform Infrastructure</option>
+              <option>General Support — Where Needed Most</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="s-message">Message</label>
+            <textarea id="s-message" name="message" class="form-control" placeholder="Tell us about your interest in supporting BarangayAI, any specific community or program you'd like to support, or any questions you have."></textarea>
+          </div>
+          <div class="form-feedback" style="display:none"></div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">
+            Submit Support Inquiry →
+          </button>
+          <p style="font-size:.82rem;color:var(--gray);margin-top:1rem;text-align:center">
+            By submitting this form, you agree to our <a href="privacy.html">Privacy Policy</a>. We will follow up within 48 hours to discuss how to process your contribution and maximize its impact.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="text-center reveal" style="max-width:720px;margin:0 auto">
+      <span class="section-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Join the Movement</span>
+      <h2 class="text-white" style="margin-bottom:1.25rem">Be Part of the AI Inclusion Story</h2>
+      <p style="color:rgba(255,255,255,.8);font-size:1.05rem;margin-bottom:2rem">
+        Every barangay that gains AI access. Every resident who earns a new income. Every farmer who plants smarter. Every family that lives healthier. It starts with people who believe — and act.
+      </p>
+      <p style="color:rgba(255,255,255,.65);font-style:italic;margin-bottom:2.5rem">
+        "Sama-sama nating itayo ang kinabukasan ng bawat barangay."<br/>
+        <em>(Together, let us build the future of every barangay.)</em>
+      </p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="#support-form" class="btn btn-white btn-lg">Support the Mission</a>
+        <a href="partners.html" class="btn btn-outline-white btn-lg">Become a Partner</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+          <span class="nav-logo-text">Barangay<span>AI</span></span>
+        </a>
+        <p>Empowering Every Barangay. Enabling Every Filipino. Building the Future Together.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">📘</a><a href="#" class="social-btn">💼</a>
+          <a href="mailto:info@barangayai.com" class="social-btn">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+          <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+          <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Support Options</h5>
+        <ul class="footer-links">
+          <li><a href="#support-form">Individual Donor</a></li>
+          <li><a href="#support-form">Foundation / NGO</a></li>
+          <li><a href="#support-form">Corporate CSR</a></li>
+          <li><a href="#where-funding-goes">Where Funds Go</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span>✉️</span><a href="mailto:info@barangayai.com" style="color:rgba(255,255,255,.6)">info@barangayai.com</a></div>
+          <div class="footer-contact-item"><span>📍</span><span>Philippines & Canada</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BarangayAI. Founded by <strong style="color:rgba(255,255,255,.8)">Ian Flores</strong>. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a> · <a href="about.html">About</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  // Individual option selector
+  document.querySelectorAll('.individual-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.individual-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      const amount = opt.dataset.amount;
+      const amountField = document.getElementById('s-amount');
+      if (amountField) amountField.value = '₱' + parseInt(amount).toLocaleString();
+    });
+  });
+</script>
+</body>
+</html>

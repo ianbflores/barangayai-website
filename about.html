@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — BarangayAI Mission, Story & Team</title>
+  <meta name="description" content="Learn about BarangayAI's mission, our founder Ian Flores, and the story behind bringing AI to every Filipino barangay." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .mission-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .value-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: all var(--transition);
+    }
+    .value-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .value-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+    .value-card h4 { margin-bottom: .5rem; }
+    .value-card p { font-size: .88rem; margin: 0; }
+
+    .founder-section {
+      background: var(--navy);
+      padding: 6rem 0;
+    }
+    .founder-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .founder-avatar {
+      width: 200px; height: 200px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 20px 60px rgba(29,158,117,.3);
+    }
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .25rem;
+    }
+    .founder-title { color: var(--green); font-size: .9rem; font-weight: 600; }
+    .founder-location { color: rgba(255,255,255,.5); font-size: .85rem; margin-top: .25rem; }
+
+    .founder-bio h3 { color: var(--white); margin-bottom: 1.25rem; }
+    .founder-bio p { color: rgba(255,255,255,.75); margin-bottom: 1.1rem; }
+    .founder-bio p:last-child { margin-bottom: 0; }
+
+    .founder-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+    .founder-tag {
+      padding: .4rem .9rem;
+      background: rgba(29,158,117,.18);
+      border: 1px solid rgba(29,158,117,.35);
+      border-radius: 100px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.85);
+    }
+
+    .story-timeline { position: relative; padding-left: 2.5rem; }
+    .story-timeline::before {
+      content: '';
+      position: absolute;
+      left: .5rem; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--green) 0%, var(--mint-mid) 100%);
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -2.05rem;
+      top: .25rem;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid var(--warm-white);
+      box-shadow: 0 0 0 2px var(--green);
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+    .timeline-item h4 { margin-bottom: .4rem; }
+    .timeline-item p { font-size: .9rem; margin: 0; }
+
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .team-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .team-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--mint) 0%, var(--mint-mid) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
+    }
+    .team-card h4 { font-size: 1rem; margin-bottom: .2rem; }
+    .team-card .team-role { font-size: .82rem; color: var(--green); font-weight: 600; margin-bottom: .5rem; }
+    .team-card p { font-size: .82rem; color: var(--gray); margin: 0; }
+
+    .advisory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .advisory-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: all var(--transition);
+    }
+    .advisory-card:hover { border-color: var(--green); transform: translateY(-2px); }
+    .advisory-avatar {
+      width: 52px; height: 52px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--mint);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .advisory-card h5 { font-size: .95rem; margin-bottom: .15rem; }
+    .advisory-card .adv-role { font-size: .8rem; color: var(--green); font-weight: 600; margin-bottom: .3rem; }
+    .advisory-card p { font-size: .83rem; color: var(--gray); margin: 0; }
+
+    .media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .media-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: all var(--transition);
+    }
+    .media-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .media-outlet { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin-bottom: .75rem; }
+    .media-card h4 { font-size: .97rem; margin-bottom: .5rem; line-height: 1.4; }
+    .media-card p { font-size: .83rem; margin-bottom: .75rem; }
+    .media-date { font-size: .78rem; color: var(--gray-light); }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .contact-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .contact-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .contact-card h4 { margin-bottom: .5rem; }
+    .contact-card p { font-size: .88rem; margin-bottom: 1rem; }
+    .contact-card a.contact-link { color: var(--green); font-weight: 700; font-size: .9rem; }
+
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .advisory-grid { grid-template-columns: repeat(2, 1fr); }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .mission-layout, .founder-layout { grid-template-columns: 1fr; }
+      .values-grid, .team-grid, .advisory-grid, .media-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+      .founder-avatar { width: 140px; height: 140px; font-size: 3rem; }
+    }
+    @media (max-width: 480px) {
+      .values-grid, .team-grid, .advisory-grid, .media-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+      <span class="nav-logo-text">Barangay<span>AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+      <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+      <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+    </ul>
+    <a href="partners.html" class="btn btn-primary btn-sm nav-cta">Contact Us</a>
+    <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a><a href="program.html">Program</a><a href="platform.html">Platform</a>
+  <a href="partners.html">Partners</a><a href="support.html">Support</a><a href="about.html">About</a>
+  <div class="nav-mobile-cta">
+    <a href="partners.html" class="btn btn-primary">Partner With Us</a>
+    <a href="support.html" class="btn btn-outline">Support the Mission</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="section-label">Our Story</span>
+      <h1>About BarangayAI</h1>
+      <p>A social enterprise born from a simple but urgent belief: that every Filipino community — from the most remote barangay to the busiest city district — deserves access to the tools and knowledge reshaping the world.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION VISION VALUES -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="mission-layout reveal">
+      <div>
+        <span class="section-label">Mission & Vision</span>
+        <h2>What Drives Everything We Do</h2>
+        <div style="margin-top:2rem">
+          <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--green);border-radius:0 var(--radius) var(--radius) 0;padding:1.5rem 1.75rem;margin-bottom:1rem">
+            <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:.6rem">Our Mission</div>
+            <p style="font-size:1.02rem;color:var(--navy);font-weight:500;line-height:1.65;margin:0">To democratize access to artificial intelligence for every Filipino community by providing practical AI education, tools, and partnerships that create real economic and social impact at the barangay level.</p>
+          </div>
+          <div style="background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:1.5rem 1.75rem">
+            <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem">Our Vision</div>
+            <p style="font-size:1.02rem;color:var(--navy);font-weight:500;line-height:1.65;margin:0">Every barangay in the Philippines has access to AI knowledge, AI tools, and AI-powered opportunities that improve livelihoods, businesses, education, healthcare, and local governance for every Filipino.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:linear-gradient(135deg,var(--navy) 0%,#0F2035 100%);border-radius:var(--radius-xl);padding:3rem;color:rgba(255,255,255,.8)">
+          <h3 style="color:var(--white);margin-bottom:1.5rem">By the Numbers</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--green);line-height:1">42,000+</div>
+              <div style="font-size:.85rem;color:rgba(255,255,255,.55);margin-top:.3rem">Barangays to reach</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--gold);line-height:1">109M+</div>
+              <div style="font-size:.85rem;color:rgba(255,255,255,.55);margin-top:.3rem">Filipinos to empower</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--white);line-height:1">6</div>
+              <div style="font-size:.85rem;color:rgba(255,255,255,.55);margin-top:.3rem">Program pillars</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--white);line-height:1">8</div>
+              <div style="font-size:.85rem;color:rgba(255,255,255,.55);margin-top:.3rem">Platform modules</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:1.75rem;padding-top:1.75rem">
+            <div style="font-size:.85rem;color:rgba(255,255,255,.5);font-style:italic">"The Philippines has one of the world's youngest, most digitally connected populations. It also has one of the world's largest gaps between urban tech access and rural digital exclusion. BarangayAI exists in that gap — and is determined to close it."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Core Values</span>
+      <h2>What We Stand For</h2>
+      <p class="section-sub">Six values that guide every program we build, every partnership we form, and every decision we make as an organization.</p>
+    </div>
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <div class="value-icon">🏘️</div>
+        <h4>Community First</h4>
+        <p>Every decision begins with the question: does this directly benefit the barangay? Community impact is the only metric that ultimately matters.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h4>Radical Inclusion</h4>
+        <p>AI benefits must reach the last mile — the most rural, most underserved, most overlooked communities. Inclusion is not aspirational for us. It is the work.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔬</div>
+        <h4>Practical Over Perfect</h4>
+        <p>We build tools and programs that work in the real conditions of Filipino communities — not ideal conditions. Pragmatic, tested, and grounded in reality.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <h4>Trust & Privacy</h4>
+        <p>Barangay residents trust us with their data and their futures. We protect that trust absolutely — with full compliance with Philippine privacy law and radical transparency.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <h4>Long-Term Thinking</h4>
+        <p>We're building capacity that outlasts our involvement. Every program is designed to leave communities stronger, more capable, and more independent than we found them.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🇵🇭</div>
+        <h4>Filipino Pride</h4>
+        <p>We believe deeply in Filipino ingenuity, resilience, and potential. BarangayAI is not bringing AI to passive recipients — it is unlocking what Filipinos already have within them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div style="max-width:860px;margin:0 auto">
+      <div class="section-header reveal">
+        <span class="section-label">Our Story</span>
+        <h2>How BarangayAI Came to Be</h2>
+      </div>
+      <div class="story-timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">The Observation</div>
+          <h4>A Gap Too Big to Ignore</h4>
+          <p>Founder Ian Flores noticed a growing divide — AI was transforming industries in cities around the world, while Filipino barangays were not just falling behind, but had no pathway to catch up. With 42,000+ barangays, the scale of the opportunity — and the risk — was enormous.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">The Question</div>
+          <h4>What Would It Actually Take?</h4>
+          <p>Rather than building another app, Ian spent time researching what barangay communities actually needed: not just technology, but education, facilitators, government partnership, and tools designed for Filipino realities — low bandwidth, mixed literacy, Filipino language, limited budgets.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">The Design</div>
+          <h4>Building the Six Pillars</h4>
+          <p>The six-pillar model emerged from community research and stakeholder conversations with barangay officials, NGOs, government agencies, and community members. Each pillar addresses a documented, real need — not a hypothetical one.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">The Platform</div>
+          <h4>The BarangayAI OS Takes Shape</h4>
+          <p>With the program model designed, development of the BarangayAI Operating System began — an integrated platform that delivers all six pillars through a single, community-accessible interface that works on any device, even with limited connectivity.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">Today</div>
+          <h4>Active Pilot Program, Seeking Partners</h4>
+          <p>BarangayAI is now an active organization seeking government partnerships, donors, and pilot barangay clients. We are ready to deploy — and we are looking for the LGUs, agencies, and supporters who are ready to lead this transformation with us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label" style="background:rgba(29,158,117,.2);color:rgba(255,255,255,.9)">Leadership</span>
+      <h2 class="text-white">Meet the Founder</h2>
+    </div>
+    <div class="founder-layout reveal">
+      <div>
+        <div class="founder-avatar">IF</div>
+        <div class="founder-name">Ian Flores</div>
+        <div class="founder-title">Founder & CEO, BarangayAI</div>
+        <div class="founder-location">🇵🇭 Philippines · 🇨🇦 Canada</div>
+        <div class="founder-tags">
+          <span class="founder-tag">Technology</span>
+          <span class="founder-tag">Artificial Intelligence</span>
+          <span class="founder-tag">Entrepreneurship</span>
+          <span class="founder-tag">Social Enterprise</span>
+          <span class="founder-tag">Philippines</span>
+          <span class="founder-tag">Canada</span>
+        </div>
+      </div>
+      <div class="founder-bio">
+        <h3>Bridging Two Worlds to Build One Future</h3>
+        <p>Ian Flores is a technology entrepreneur and AI practitioner with deep roots in both the Philippines and Canada. His professional background spans technology, artificial intelligence, and entrepreneurship — with a particular focus on how AI can create real, measurable impact for communities that have historically been left out of the technology revolution.</p>
+        <p>Ian's connection to the barangay is personal. Growing up with family across the Philippine provinces, he watched how technology transformed life in cities while rural and semi-rural communities struggled with the same challenges decade after decade. When AI began its rapid ascent, he recognized both the threat — that the gap would widen — and the opportunity: for the first time in history, a technology existed that could be deployed affordably and accessibly enough to reach every barangay.</p>
+        <p>Drawing on his experience in technology and AI, Ian designed BarangayAI around the insight that the barriers to AI adoption in barangays are not primarily technological — they are educational, cultural, and structural. The solution is not just a better app. It is a comprehensive ecosystem of education, tools, partnership, and sustained support.</p>
+        <p>Based across the Philippines and Canada, Ian brings together international best practices in technology and social enterprise with deep Philippine cultural understanding — building an organization that is credible to global funders and authentic to Filipino communities.</p>
+        <div style="margin-top:2rem">
+          <a href="mailto:info@barangayai.com" class="btn btn-primary">Connect with Ian</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Our Team</span>
+      <h2>The People Building BarangayAI</h2>
+      <p class="section-sub">A growing team of educators, technologists, community organizers, and advocates — united by the belief that AI access is a right, not a privilege.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <div class="team-avatar">🚀</div>
+        <h4>Ian Flores</h4>
+        <div class="team-role">Founder & CEO</div>
+        <p>Technology entrepreneur, AI practitioner, Philippines & Canada</p>
+      </div>
+      <div class="team-card" style="border-style:dashed">
+        <div class="team-avatar" style="background:var(--warm-white)">🎓</div>
+        <h4>Education Director</h4>
+        <div class="team-role">Role Open</div>
+        <p>Seeking a Filipino education specialist to lead curriculum and training programs</p>
+      </div>
+      <div class="team-card" style="border-style:dashed">
+        <div class="team-avatar" style="background:var(--warm-white)">🛠️</div>
+        <h4>Platform Lead</h4>
+        <div class="team-role">Role Open</div>
+        <p>Seeking a senior developer to lead the BarangayAI OS development team</p>
+      </div>
+      <div class="team-card" style="border-style:dashed">
+        <div class="team-avatar" style="background:var(--warm-white)">🤝</div>
+        <h4>Community Coordinator</h4>
+        <div class="team-role">Role Open</div>
+        <p>Seeking experienced community organizers for barangay program deployment</p>
+      </div>
+    </div>
+    <div class="text-center mt-3 reveal">
+      <p style="color:var(--gray);margin-bottom:1.25rem">Interested in joining the BarangayAI team and helping build the future of Filipino communities?</p>
+      <a href="mailto:info@barangayai.com?subject=Joining BarangayAI" class="btn btn-outline">I Want to Join the Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISORY BOARD -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Advisory Board</span>
+      <h2>Advisors & Champions</h2>
+      <p class="section-sub">Seeking experienced advisors from government, technology, education, and civil society to guide BarangayAI's strategy and growth.</p>
+    </div>
+    <div class="advisory-grid reveal">
+      <div class="advisory-card" style="border-style:dashed">
+        <div class="advisory-avatar">🏛️</div>
+        <div>
+          <h5>Government Advisor</h5>
+          <div class="adv-role">LGU / National Agency Expert</div>
+          <p>Seeking a senior government official with experience in LGU operations and national digital governance programs</p>
+        </div>
+      </div>
+      <div class="advisory-card" style="border-style:dashed">
+        <div class="advisory-avatar">💡</div>
+        <div>
+          <h5>Technology Advisor</h5>
+          <div class="adv-role">AI & Technology Expert</div>
+          <p>Seeking a technology leader with experience in AI deployment and digital transformation in the Philippines</p>
+        </div>
+      </div>
+      <div class="advisory-card" style="border-style:dashed">
+        <div class="advisory-avatar">📚</div>
+        <div>
+          <h5>Education Advisor</h5>
+          <div class="adv-role">Community Education Expert</div>
+          <p>Seeking an educator with experience in adult learning, vocational training, and non-formal education in Philippine communities</p>
+        </div>
+      </div>
+      <div class="advisory-card" style="border-style:dashed">
+        <div class="advisory-avatar">🤝</div>
+        <div>
+          <h5>Civil Society Advisor</h5>
+          <div class="adv-role">NGO & Development Expert</div>
+          <p>Seeking a civil society leader with experience in community development and digital inclusion programs in the Philippines</p>
+        </div>
+      </div>
+      <div class="advisory-card" style="border-style:dashed">
+        <div class="advisory-avatar">🌏</div>
+        <div>
+          <h5>International Advisor</h5>
+          <div class="adv-role">Global Development Expert</div>
+          <p>Seeking an international development professional with experience in social enterprise, AI for development, and Asian markets</p>
+        </div>
+      </div>
+      <div class="advisory-card" style="border-style:dashed">
+        <div class="advisory-avatar">💼</div>
+        <div>
+          <h5>Business Advisor</h5>
+          <div class="adv-role">MSME & Economic Development</div>
+          <p>Seeking a business development expert with experience in Philippine MSME growth and economic empowerment programs</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-3 reveal">
+      <p style="color:var(--gray);margin-bottom:1.25rem">Are you a leader in government, technology, education, or civil society who believes in this mission?</p>
+      <a href="mailto:info@barangayai.com?subject=Advisory Board Interest" class="btn btn-outline">Inquire About Joining the Advisory Board</a>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section style="background: var(--warm-white);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Media & Press</span>
+      <h2>BarangayAI in the News</h2>
+      <p class="section-sub">Coverage and media opportunities. For press inquiries, interviews, or speaking invitations, contact us at <a href="mailto:info@barangayai.com">info@barangayai.com</a>.</p>
+    </div>
+    <div class="media-grid reveal">
+      <div class="media-card" style="border-style:dashed">
+        <div class="media-outlet">📰 Philippine Daily — Placeholder</div>
+        <h4>BarangayAI Launches Pilot Program Bringing AI to Rural Filipino Communities</h4>
+        <p>A social enterprise is working to ensure that the AI revolution reaches all 42,000+ Philippine barangays, not just urban centers.</p>
+        <div class="media-date">Awaiting coverage — Reach out for media partnerships</div>
+      </div>
+      <div class="media-card" style="border-style:dashed">
+        <div class="media-outlet">📺 Tech Media — Placeholder</div>
+        <h4>How One Entrepreneur Is Building the AI Infrastructure for the Philippines' Smallest Governments</h4>
+        <p>BarangayAI is betting that the barangay — not the city — is where the Philippines' AI transformation must begin.</p>
+        <div class="media-date">Awaiting coverage — Interview requests welcome</div>
+      </div>
+      <div class="media-card" style="border-style:dashed">
+        <div class="media-outlet">🌐 Development Sector — Placeholder</div>
+        <h4>A New Model for AI Inclusion: What BarangayAI Is Getting Right</h4>
+        <p>The BarangayAI six-pillar model offers a replicable framework for community-level AI deployment in developing economies.</p>
+        <div class="media-date">Awaiting coverage — Story pitches welcome</div>
+      </div>
+    </div>
+    <div class="alert alert-info mt-3 reveal" style="max-width:600px;margin-left:auto;margin-right:auto;margin-top:2rem;text-align:center">
+      <strong>Media & Press Inquiries:</strong> We welcome journalists, researchers, and content creators covering AI, Philippines technology, social enterprise, and digital inclusion. Contact <a href="mailto:info@barangayai.com">info@barangayai.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Get in Touch</span>
+      <h2>Contact BarangayAI</h2>
+      <p class="section-sub">Whether you're a barangay captain, a government official, a potential donor, a journalist, or simply someone who believes in this mission — we want to hear from you.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <div class="contact-icon">🏛️</div>
+        <h4>Partnership Inquiries</h4>
+        <p>For barangays, LGUs, municipalities, and government agencies exploring partnership</p>
+        <a href="partners.html" class="contact-link">Go to Partners Page →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">❤️</div>
+        <h4>Donor & CSR Support</h4>
+        <p>For individuals, foundations, and corporations exploring how to support the mission</p>
+        <a href="support.html" class="contact-link">Go to Support Page →</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <h4>General Inquiries</h4>
+        <p>For media, speaking invitations, team inquiries, advisory board interest, and everything else</p>
+        <a href="mailto:info@barangayai.com" class="contact-link">info@barangayai.com</a>
+      </div>
+    </div>
+    <div class="text-center mt-3 reveal" style="color:var(--gray);font-size:.9rem">
+      <p>📍 BarangayAI operates between the Philippines and Canada.<br/>We serve communities across the Philippine archipelago.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-left">
+        <span class="section-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Join Us</span>
+        <h2>This Mission Needs You</h2>
+        <p>BarangayAI is an early-stage organization with an enormous mission. We are looking for partners, supporters, advisors, team members, and believers who see what we see — and are ready to act.</p>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card">
+          <h4>🏛️ Partner Your Community</h4>
+          <p>Bring the BarangayAI OS and all six pillars to your barangay or municipality.</p>
+          <a href="partners.html" class="btn btn-white btn-sm">Become a Partner →</a>
+        </div>
+        <div class="cta-card">
+          <h4>❤️ Fund the Mission</h4>
+          <p>Your contribution funds AI access for communities that can't afford it on their own.</p>
+          <a href="support.html" class="btn btn-outline-white btn-sm">Support BarangayAI →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+          <span class="nav-logo-text">Barangay<span>AI</span></span>
+        </a>
+        <p>Empowering Every Barangay. Enabling Every Filipino. Building the Future Together.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">📘</a><a href="#" class="social-btn">💼</a>
+          <a href="mailto:info@barangayai.com" class="social-btn">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+          <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+          <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>About</h5>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html#mission">Mission & Vision</a></li>
+          <li><a href="about.html#team">Team</a></li>
+          <li><a href="about.html#advisory">Advisory Board</a></li>
+          <li><a href="about.html#media">Media & Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span>✉️</span><a href="mailto:info@barangayai.com" style="color:rgba(255,255,255,.6)">info@barangayai.com</a></div>
+          <div class="footer-contact-item"><span>📍</span><span>Philippines & Canada</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BarangayAI. Founded by <strong style="color:rgba(255,255,255,.8)">Ian Flores</strong>. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a> · <a href="partners.html">Contact</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

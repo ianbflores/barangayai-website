@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platform — BarangayAI OS</title>
+  <meta name="description" content="The BarangayAI Operating System — an all-in-one AI platform giving every barangay the digital infrastructure of a modern organization." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .module-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .module-section:last-of-type { border-bottom: none; }
+    .module-section:nth-child(even) { background: var(--white); }
+    .module-section:nth-child(odd) { background: var(--warm-white); }
+
+    .module-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .module-layout.reverse { direction: rtl; }
+    .module-layout.reverse > * { direction: ltr; }
+
+    .module-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, #0F2035 100%);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      color: rgba(255,255,255,.7);
+    }
+    .module-num {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .module-visual-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .module-visual h3 { color: var(--white); margin-bottom: 1rem; }
+    .module-visual p { font-size: .9rem; margin-bottom: 1.5rem; }
+
+    .feature-list { display: flex; flex-direction: column; gap: .65rem; }
+    .feature-item {
+      display: flex; align-items: center; gap: .75rem;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-sm);
+      padding: .7rem 1rem;
+      font-size: .88rem;
+      color: rgba(255,255,255,.8);
+    }
+    .feature-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    .module-features { margin-top: 1.5rem; }
+    .module-features h5 {
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      margin-bottom: .85rem;
+    }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .feature-tag {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .65rem 1rem;
+      background: var(--mint);
+      border-radius: var(--radius-sm);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--green-deep);
+    }
+
+    .platform-overview {
+      background: var(--navy);
+      padding: 5rem 0;
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .overview-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .overview-card:hover {
+      background: rgba(29,158,117,.15);
+      border-color: rgba(29,158,117,.4);
+      transform: translateY(-4px);
+    }
+    .overview-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .overview-card h4 { color: var(--white); font-size: .95rem; margin-bottom: .4rem; }
+    .overview-card p { font-size: .82rem; color: rgba(255,255,255,.5); margin: 0; }
+
+    .tech-specs {
+      background: var(--mint);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      margin-top: 3rem;
+    }
+    .tech-specs h4 { margin-bottom: 1.5rem; }
+    .specs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .spec-item {}
+    .spec-label { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green-deep); margin-bottom: .35rem; }
+    .spec-value { font-size: .95rem; font-weight: 600; color: var(--navy); }
+
+    @media (max-width: 1024px) {
+      .overview-grid { grid-template-columns: repeat(2, 1fr); }
+      .specs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .module-layout, .module-layout.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .overview-grid { grid-template-columns: repeat(2, 1fr); }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+      <span class="nav-logo-text">Barangay<span>AI</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="program.html">Program</a></li>
+      <li><a href="platform.html">Platform</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="partners.html" class="btn btn-primary btn-sm nav-cta">Contact Us</a>
+    <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a><a href="program.html">Program</a><a href="platform.html">Platform</a>
+  <a href="partners.html">Partners</a><a href="support.html">Support</a><a href="about.html">About</a>
+  <div class="nav-mobile-cta">
+    <a href="partners.html" class="btn btn-primary">Partner With Us</a>
+    <a href="support.html" class="btn btn-outline">Support the Mission</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="section-label">The Technology</span>
+      <h1>The BarangayAI<br />Operating System</h1>
+      <p>An all-in-one AI platform giving every Filipino community the digital infrastructure of a modern organization — without the cost, complexity, or technical expertise traditionally required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM LAUNCH NOTICE -->
+<div class="container">
+  <div class="platform-launch-notice">
+    <div class="launch-notice-inner">
+      <div class="launch-icon">🚀</div>
+      <div class="launch-text">
+        <strong>Platform in Active Development</strong>
+        <p>The BarangayAI Operating System is currently being built and tested with pilot barangays.
+        We are now accepting applications from barangays and LGUs who want to be among the first
+        communities to deploy the full platform when it launches in 2026.</p>
+      </div>
+      <a href="partners.html" class="launch-cta-btn">Apply for Early Access</a>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="platform-overview">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="section-label" style="background:rgba(29,158,117,.2);color:rgba(255,255,255,.9)">8 Modules</span>
+      <h2 class="text-white">Everything a Barangay Needs.<br />In One Platform.</h2>
+      <p style="color:rgba(255,255,255,.6);max-width:620px;margin:0 auto">
+        The BarangayAI OS integrates eight purpose-built modules — covering citizen services, education, livelihoods, business, health, agriculture, communications, and analytics — into a single platform that works for every community.
+      </p>
+    </div>
+    <div class="overview-grid">
+      <div class="overview-card reveal reveal-delay-1">
+        <div class="overview-card-icon">🤖</div>
+        <h4>AI Assistant</h4>
+        <p>24/7 citizen support chatbot</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-1">
+        <div class="overview-card-icon">🏢</div>
+        <h4>Service Hub</h4>
+        <p>Barangay services & documents</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-2">
+        <div class="overview-card-icon">🎓</div>
+        <h4>Learning Academy</h4>
+        <p>AI courses & certifications</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-2">
+        <div class="overview-card-icon">💼</div>
+        <h4>Jobs Portal</h4>
+        <p>Livelihoods & opportunities</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-3">
+        <div class="overview-card-icon">📈</div>
+        <h4>Business Assistant</h4>
+        <p>Growth tools for MSMEs</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-3">
+        <div class="overview-card-icon">📢</div>
+        <h4>Communications</h4>
+        <p>Community announcements</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-4">
+        <div class="overview-card-icon">📊</div>
+        <h4>Analytics Dashboard</h4>
+        <p>Data-driven governance</p>
+      </div>
+      <div class="overview-card reveal reveal-delay-4">
+        <div class="overview-card-icon">🌾</div>
+        <h4>Agriculture Tools</h4>
+        <p>Farm & fishery AI support</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 1 -->
+<section class="module-section" id="module-1">
+  <div class="container">
+    <div class="module-layout reveal">
+      <div>
+        <span class="section-label">Module 01</span>
+        <h2>AI Assistant for Citizens</h2>
+        <span class="module-status status-pilot">Now in Pilot</span>
+        <p style="margin-top:16px">Our citizen-facing AI chatbot is currently live and serving residents via Facebook Messenger. Powered by Claude AI, it answers questions in Filipino 24/7 — about barangay documents, office hours, programs, and more. This is the foundation of the full BarangayAI platform.</p>
+        <p>Citizens can ask about document requirements, barangay schedules, local ordinances, health information, and more — and get accurate, helpful responses instantly, without waiting in line or calling the barangay hall.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">🇵🇭 Filipino language support</div>
+            <div class="feature-tag">📱 Messenger & web access</div>
+            <div class="feature-tag">🕐 24/7 availability</div>
+            <div class="feature-tag">📋 Service request routing</div>
+            <div class="feature-tag">🔄 Live escalation to staff</div>
+            <div class="feature-tag">📊 Conversation analytics</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 01</div>
+          <div class="module-visual-icon">🤖</div>
+          <h3>AI Assistant for Citizens</h3>
+          <p>Residents interact with their barangay anytime — getting instant, accurate answers from an AI trained on local government processes and community needs.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Answers routine inquiries instantly</div>
+            <div class="feature-item"><div class="feature-dot"></div>Guides residents through service processes</div>
+            <div class="feature-item"><div class="feature-dot"></div>Reduces staff workload by up to 70%</div>
+            <div class="feature-item"><div class="feature-dot"></div>Learns and improves from community interactions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 2 -->
+<section class="module-section" id="module-2">
+  <div class="container">
+    <div class="module-layout reverse reveal">
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 02</div>
+          <div class="module-visual-icon">🏢</div>
+          <h3>Barangay Service & Information Hub</h3>
+          <p>A digital barangay hall — where residents can access forms, requirements, service status, announcements, and community resources anytime, anywhere.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Online document request & tracking</div>
+            <div class="feature-item"><div class="feature-dot"></div>Real-time service status updates</div>
+            <div class="feature-item"><div class="feature-dot"></div>Community notice board & events</div>
+            <div class="feature-item"><div class="feature-dot"></div>Emergency alerts and notifications</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Module 02</span>
+        <h2>Barangay Service & Information Hub</h2>
+        <span class="module-status status-dev">In Development</span>
+        <p style="margin-top:16px">Every barangay service, requirement, form, and announcement — organized, searchable, and accessible from a resident's phone. No more confusion about what documents to bring, no more wasted trips to the barangay hall.</p>
+        <p>The Service Hub also gives barangay officials a simple backend to manage services, post announcements, and track requests — without any technical expertise required.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">📄 Digital document requests</div>
+            <div class="feature-tag">📋 Service requirement guides</div>
+            <div class="feature-tag">📢 Announcement management</div>
+            <div class="feature-tag">🔔 Push notifications</div>
+            <div class="feature-tag">🗺️ Community resource directory</div>
+            <div class="feature-tag">🖥️ Staff admin dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 3 -->
+<section class="module-section" id="module-3">
+  <div class="container">
+    <div class="module-layout reveal">
+      <div>
+        <span class="section-label">Module 03</span>
+        <h2>AI Learning Academy</h2>
+        <span class="module-status status-dev">In Development</span>
+        <p style="margin-top:16px">A full online learning platform built into the BarangayAI OS — offering AI literacy courses, practical skills training, and certificates of completion for residents at every level, from complete beginners to aspiring AI professionals.</p>
+        <p>Courses are designed for the Filipino learner: in Filipino, using local examples, structured for mobile learning, and paced for adults who may be balancing work and family while studying.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">📱 Mobile-first learning</div>
+            <div class="feature-tag">🇵🇭 Filipino language content</div>
+            <div class="feature-tag">🏆 Certificates of completion</div>
+            <div class="feature-tag">📊 Progress tracking</div>
+            <div class="feature-tag">👨‍🏫 Facilitator support tools</div>
+            <div class="feature-tag">🌐 Offline-capable modules</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 03</div>
+          <div class="module-visual-icon">🎓</div>
+          <h3>AI Learning Academy</h3>
+          <p>World-class AI education, localized for every Filipino learner — from the barangay to the global job market.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Beginner to advanced AI courses</div>
+            <div class="feature-item"><div class="feature-dot"></div>Practical, hands-on learning modules</div>
+            <div class="feature-item"><div class="feature-dot"></div>Livelihood-linked certification tracks</div>
+            <div class="feature-item"><div class="feature-dot"></div>Community cohort learning support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 4 -->
+<section class="module-section" id="module-4">
+  <div class="container">
+    <div class="module-layout reverse reveal">
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 04</div>
+          <div class="module-visual-icon">💼</div>
+          <h3>Livelihood & Job Opportunities Portal</h3>
+          <p>Connect barangay residents with real income opportunities — local gigs, remote work, freelance projects, and livelihood resources — in one curated, trusted platform.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Curated local and remote job listings</div>
+            <div class="feature-item"><div class="feature-dot"></div>AI-matched opportunities per skill level</div>
+            <div class="feature-item"><div class="feature-dot"></div>Freelance platform integration guides</div>
+            <div class="feature-item"><div class="feature-dot"></div>Livelihood program announcements</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Module 04</span>
+        <h2>Livelihood & Job Opportunities Portal</h2>
+        <span class="module-status status-soon">Coming 2026</span>
+        <p style="margin-top:16px">The jobs portal connects residents who have completed AI training with real income opportunities — matching their skills to local employment, remote work, freelance platforms, and government livelihood programs.</p>
+        <p>For barangay officials, it provides visibility into the economic needs of their community — which residents need work, which skills are available, and which livelihood programs to deploy next.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">🔍 AI job matching</div>
+            <div class="feature-tag">🌍 Remote & local listings</div>
+            <div class="feature-tag">💻 Freelance platform guides</div>
+            <div class="feature-tag">📈 Skills-to-earnings mapping</div>
+            <div class="feature-tag">🤝 Employer connection tools</div>
+            <div class="feature-tag">📊 Community employment data</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 5 -->
+<section class="module-section" id="module-5">
+  <div class="container">
+    <div class="module-layout reveal">
+      <div>
+        <span class="section-label">Module 05</span>
+        <h2>Business Growth Assistant</h2>
+        <span class="module-status status-soon">Coming 2026</span>
+        <p style="margin-top:16px">An AI-powered business toolkit designed specifically for Filipino micro and small businesses — giving them marketing content, customer service automation, business planning tools, and operational support that was previously only accessible to large corporations.</p>
+        <p>Small business owners can generate social media content, write product descriptions, create promotional materials, and get AI guidance on business decisions — all without needing design skills, marketing expertise, or large budgets.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">📣 AI content generator</div>
+            <div class="feature-tag">🤖 Customer service bot</div>
+            <div class="feature-tag">📊 Business planning AI</div>
+            <div class="feature-tag">🛍️ E-commerce support</div>
+            <div class="feature-tag">💬 AI promo copywriting</div>
+            <div class="feature-tag">📈 Sales analytics guide</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 05</div>
+          <div class="module-visual-icon">📈</div>
+          <h3>Business Growth Assistant</h3>
+          <p>Enterprise-level AI tools made accessible for the sari-sari store, the carinderia, and every Filipino small business in between.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Generate Facebook posts in seconds</div>
+            <div class="feature-item"><div class="feature-dot"></div>AI-written product descriptions</div>
+            <div class="feature-item"><div class="feature-dot"></div>Customer message templates & chatbot</div>
+            <div class="feature-item"><div class="feature-dot"></div>Business growth action plans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 6 -->
+<section class="module-section" id="module-6">
+  <div class="container">
+    <div class="module-layout reverse reveal">
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 06</div>
+          <div class="module-visual-icon">📢</div>
+          <h3>Community Communications Center</h3>
+          <p>A modern communications hub for barangay officials — making it easy to share updates, coordinate emergency responses, and keep the whole community informed.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Multi-channel announcement publishing</div>
+            <div class="feature-item"><div class="feature-dot"></div>AI-assisted content drafting</div>
+            <div class="feature-item"><div class="feature-dot"></div>Emergency alert broadcasting</div>
+            <div class="feature-item"><div class="feature-dot"></div>Engagement tracking & analytics</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Module 06</span>
+        <h2>Community Communications Center</h2>
+        <span class="module-status status-soon">Coming 2026</span>
+        <p style="margin-top:16px">Keeping a community informed is one of the most important — and most time-consuming — jobs of barangay leadership. The Communications Center makes this easier with AI-assisted drafting, multi-channel publishing, and emergency broadcasting tools built for non-technical users.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">📱 SMS & Messenger reach</div>
+            <div class="feature-tag">✍️ AI announcement drafting</div>
+            <div class="feature-tag">🚨 Emergency alert system</div>
+            <div class="feature-tag">📅 Event & schedule management</div>
+            <div class="feature-tag">📊 Message reach analytics</div>
+            <div class="feature-tag">🌐 Multilingual support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 7 -->
+<section class="module-section" id="module-7">
+  <div class="container">
+    <div class="module-layout reveal">
+      <div>
+        <span class="section-label">Module 07</span>
+        <h2>Reporting & Analytics Dashboard</h2>
+        <span class="module-status status-soon">Coming 2026</span>
+        <p style="margin-top:16px">Data-driven governance starts with understanding what's happening in your community. The Analytics Dashboard gives barangay officials real-time visibility into service demand, resident needs, platform usage, and community trends — empowering better decisions and stronger accountability.</p>
+        <p>For national agencies and donors, it provides the impact reporting and transparency needed to justify continued investment and scale successful pilots.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">📊 Real-time service metrics</div>
+            <div class="feature-tag">📈 Community usage trends</div>
+            <div class="feature-tag">📋 Automated monthly reports</div>
+            <div class="feature-tag">🗺️ Geographic data mapping</div>
+            <div class="feature-tag">💡 AI-powered insights</div>
+            <div class="feature-tag">📤 Report export & sharing</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 07</div>
+          <div class="module-visual-icon">📊</div>
+          <h3>Reporting & Analytics Dashboard</h3>
+          <p>Turn community data into actionable insights — giving barangay officials, LGUs, and national agencies the visibility they need to govern effectively.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Visual dashboards for non-technical users</div>
+            <div class="feature-item"><div class="feature-dot"></div>Automated government compliance reports</div>
+            <div class="feature-item"><div class="feature-dot"></div>Donor impact reporting</div>
+            <div class="feature-item"><div class="feature-dot"></div>Trend alerts and anomaly detection</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULE 8 -->
+<section class="module-section" id="module-8">
+  <div class="container">
+    <div class="module-layout reverse reveal">
+      <div>
+        <div class="module-visual">
+          <div class="module-num">Module 08</div>
+          <div class="module-visual-icon">🌾</div>
+          <h3>Agriculture & Rural Support Tools</h3>
+          <p>AI-powered insights for farmers, fisherfolk, and rural communities — practical guidance that improves real decisions on the farm, at sea, and at the market.</p>
+          <div class="feature-list">
+            <div class="feature-item"><div class="feature-dot"></div>Crop planning and advisory AI</div>
+            <div class="feature-item"><div class="feature-dot"></div>Pest identification via photo</div>
+            <div class="feature-item"><div class="feature-dot"></div>Weather and planting calendar</div>
+            <div class="feature-item"><div class="feature-dot"></div>Market price feeds and alerts</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label">Module 08</span>
+        <h2>Agriculture & Rural Support Tools</h2>
+        <span class="module-status status-soon">Coming 2026</span>
+        <p style="margin-top:16px">Designed for communities where agriculture and fishing are the primary livelihoods, this module brings practical AI guidance directly to the hands of farmers and fisherfolk — in their language, on the tools they already use.</p>
+        <p>Integrated with Philippine weather services, market price data, and agricultural databases, the Agriculture module provides context-specific advice that accounts for local crop varieties, regional conditions, and seasonal factors.</p>
+        <div class="module-features">
+          <h5>✦ Key Features</h5>
+          <div class="features-grid">
+            <div class="feature-tag">🌱 Crop advisory AI</div>
+            <div class="feature-tag">🐛 Photo pest identification</div>
+            <div class="feature-tag">🌦️ PAGASA weather integration</div>
+            <div class="feature-tag">💹 Market price tracker</div>
+            <div class="feature-tag">🐟 Fishing condition alerts</div>
+            <div class="feature-tag">📱 Works on basic smartphones</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH SPECS / DEPLOYMENT -->
+<section style="background: var(--warm-white); padding: 5rem 0;">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <span class="section-label">Technical Details</span>
+      <h2>Built to Work Everywhere in the Philippines</h2>
+      <p class="section-sub">The BarangayAI OS is designed for Philippine conditions — low-bandwidth environments, mixed devices, limited IT support, and the full diversity of 42,000+ communities.</p>
+    </div>
+    <div class="tech-specs reveal">
+      <h4>Platform Specifications</h4>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">Access Methods</div>
+          <div class="spec-value">Web browser, Facebook Messenger, SMS</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Language Support</div>
+          <div class="spec-value">Filipino, English, regional dialects</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Device Compatibility</div>
+          <div class="spec-value">Any smartphone, tablet, or computer</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Connectivity</div>
+          <div class="spec-value">Optimized for low-bandwidth connections</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Data Privacy</div>
+          <div class="spec-value">Philippine Data Privacy Act (RA 10173) compliant</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">IT Requirements</div>
+          <div class="spec-value">Zero — fully managed by BarangayAI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST CTA -->
+<section class="platform-waitlist-section">
+  <div class="container">
+    <h2>Be Part of the First Wave</h2>
+    <p>The BarangayAI Operating System is being built alongside our pilot barangay partners.
+    Join now to shape the platform, get priority access, and bring AI-powered governance
+    to your community before anyone else.</p>
+    <div class="waitlist-actions">
+      <a href="partners.html" class="btn btn-white">Apply as Pilot Partner</a>
+      <a href="support.html" class="btn btn-outline-white">Support the Build</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-left">
+        <span class="section-label" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Get the Platform</span>
+        <h2>Bring the BarangayAI OS to Your Community</h2>
+        <p>The BarangayAI OS is deployed through our partnership program — no procurement, no technical setup, no upfront cost for qualifying pilot barangays.</p>
+      </div>
+      <div class="cta-cards">
+        <div class="cta-card">
+          <h4>🏛️ Partner Your Barangay</h4>
+          <p>Qualify for a pilot program and get the full BarangayAI OS deployed in your community with training and support included.</p>
+          <a href="partners.html" class="btn btn-white btn-sm">Apply for Partnership →</a>
+        </div>
+        <div class="cta-card">
+          <h4>❤️ Fund Platform Access</h4>
+          <p>Support the mission by funding platform access for barangays that need it most — your contribution unlocks AI for an entire community.</p>
+          <a href="support.html" class="btn btn-outline-white btn-sm">Support the Mission →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+          <span class="nav-logo-text">Barangay<span>AI</span></span>
+        </a>
+        <p>Empowering Every Barangay. Enabling Every Filipino. Building the Future Together.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">📘</a>
+          <a href="#" class="social-btn">💼</a>
+          <a href="mailto:info@barangayai.com" class="social-btn">✉️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="program.html">Program</a></li>
+          <li><a href="platform.html">Platform</a></li><li><a href="partners.html">Partners</a></li>
+          <li><a href="support.html">Support</a></li><li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Platform Modules</h5>
+        <ul class="footer-links">
+          <li><a href="#module-1">AI Assistant</a></li><li><a href="#module-2">Service Hub</a></li>
+          <li><a href="#module-3">Learning Academy</a></li><li><a href="#module-4">Jobs Portal</a></li>
+          <li><a href="#module-5">Business Assistant</a></li><li><a href="#module-6">Communications</a></li>
+          <li><a href="#module-7">Analytics</a></li><li><a href="#module-8">Agriculture Tools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact">
+          <div class="footer-contact-item"><span>✉️</span><a href="mailto:info@barangayai.com" style="color:rgba(255,255,255,.6)">info@barangayai.com</a></div>
+          <div class="footer-contact-item"><span>📍</span><span>Philippines & Canada</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 BarangayAI. Founded by <strong style="color:rgba(255,255,255,.8)">Ian Flores</strong>. All rights reserved.</p>
+      <p><a href="privacy.html">Privacy Policy</a> · <a href="about.html">About</a> · <a href="partners.html">Contact</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

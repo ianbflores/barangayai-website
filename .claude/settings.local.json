@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(ls -la \"C:/Users/cbflo/Downloads/\" | grep -iE \"\\\\.\\(png|jpg|jpeg\\)\" | tail -10)",
+      "Bash(ls -lat \"C:/Users/cbflo/AppData/Local/Temp/\" 2>/dev/null | grep -iE \"\\\\.\\(png|jpg|jpeg\\)\" | head -5)",
+      "Bash(find \"C:/Users/cbflo/.claude\" -name \"*.png\" -o -name \"*.jpg\" 2>/dev/null | head -10)"
     ]
   }
 }

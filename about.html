@@ -43,16 +43,15 @@
     .founder-avatar {
       width: 200px; height: 200px;
       border-radius: var(--radius-xl);
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 4rem;
-      font-weight: 900;
-      color: var(--white);
+      overflow: hidden;
       margin-bottom: 1.5rem;
       box-shadow: 0 20px 60px rgba(29,158,117,.3);
+    }
+    .founder-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
     .founder-name {
       font-family: var(--font-display);
@@ -204,7 +203,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+      <img src="BarangayAI Logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
       <span class="nav-logo-text">Barangay<span>AI</span></span>
     </a>
     <ul class="nav-links">
@@ -380,7 +379,9 @@
     </div>
     <div class="founder-layout reveal">
       <div>
-        <div class="founder-avatar">IF</div>
+        <div class="founder-avatar">
+          <img src="ian-flores.png" alt="Ian Flores, Founder & CEO of BarangayAI" />
+        </div>
         <div class="founder-name">Ian Flores</div>
         <div class="founder-title">Founder & CEO, BarangayAI</div>
         <div class="founder-location">🇵🇭 Philippines · 🇨🇦 Canada</div>
@@ -611,7 +612,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="nav-logo">
-          <img src="logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
+          <img src="BarangayAI Logo.png" alt="" class="nav-logo-img" aria-hidden="true" />
           <span class="nav-logo-text">Barangay<span>AI</span></span>
         </a>
         <p>Empowering Every Barangay. Enabling Every Filipino. Building the Future Together.</p>

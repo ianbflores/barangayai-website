@@ -5,6 +5,15 @@
 /* --- Reset & Base --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Flag emoji images (Twemoji) — fixes Windows rendering */
+.flag-emoji {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.2em;
+  margin: 0 1px;
+}
+
 :root {
   --green:       #1D9E75;
   --green-deep:  #0F6E56;
@@ -607,32 +616,43 @@ section { padding: 6rem 0; }
 }
 .hero2-card-label { font-size: 12px; color: #6B7280; line-height: 1.4; }
 
-/* Social proof bar */
-.sp-bar {
-  background: #fff;
+/* Marquee / social proof bar */
+.marquee-bar {
+  width: 100%;
+  background: #ffffff;
   border-top: 1px solid #E5E7EB;
   border-bottom: 1px solid #E5E7EB;
   padding: 14px 0;
   overflow: hidden;
 }
-.sp-track {
+.marquee-track {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  white-space: nowrap;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
 }
-.sp-content {
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-content {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 0 24px;
-  font-size: 13px;
-  color: #9CA3AF;
-  letter-spacing: .05em;
+  gap: 20px;
+  padding-right: 20px;
+  white-space: nowrap;
   flex-shrink: 0;
 }
-.sp-sep { color: #D1D5DB; }
+.marquee-content span {
+  font-size: 13px;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+}
+.marquee-dot {
+  color: #1D9E75 !important;
+  font-weight: 700;
+  font-size: 16px !important;
+}
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -652,15 +672,6 @@ section { padding: 6rem 0; }
   .hero2-card-num { font-size: 24px; }
   .hero2-card { padding: 18px 16px; }
 
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .sp-track {
-    justify-content: flex-start;
-    animation: marquee 22s linear infinite;
-    width: max-content;
-  }
 }
 
 /* === Philippines Map V2 — draw-in + hover === */

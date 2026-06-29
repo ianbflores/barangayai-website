@@ -248,107 +248,122 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-/* ── BarangayAI Form Handler ── */
+// ── BarangayAI Form Handler ──────────────────────────────
 
-function initForm(formId, endpoint, successId, errorId, submitBtnId, emailFieldId, successEmailId) {
-  const form = document.getElementById(formId);
+function initBarangayForm(config) {
+  const form = document.getElementById(config.formId);
   if (!form) return;
+
+  const submitBtn = document.getElementById(config.submitBtnId);
+  const successEl = document.getElementById(config.successId);
+  const errorEl = document.getElementById(config.errorId);
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    clearErrors(form);
-    if (!validateForm(form)) return;
 
-    const submitBtn = document.getElementById(submitBtnId);
+    clearAllErrors(form);
+
+    if (!validateBarangayForm(form)) {
+      const firstError = form.querySelector('.error');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
     submitBtn.disabled = true;
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'inline';
-
-    document.getElementById(successId).style.display = 'none';
-    document.getElementById(errorId).style.display = 'none';
+    if (btnText) btnText.style.display = 'none';
+    if (btnLoading) btnLoading.style.display = 'inline';
+    successEl.style.display = 'none';
+    errorEl.style.display = 'none';
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(config.endpoint, {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
 
+      const result = await response.json().catch(() => ({}));
+
       if (response.ok) {
-        const emailVal = document.getElementById(emailFieldId)?.value || '';
-        const successEmailEl = document.getElementById(successEmailId);
-        if (successEmailEl) successEmailEl.textContent = emailVal;
+        const emailField = document.getElementById(config.emailFieldId);
+        const successEmailEl = document.getElementById(config.successEmailId);
+        if (emailField && successEmailEl) {
+          successEmailEl.textContent = emailField.value;
+        }
         form.reset();
-        document.getElementById(successId).style.display = 'block';
-        document.getElementById(successId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        successEl.style.display = 'block';
+        successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } else {
-        throw new Error('Server error');
+        console.error('Formspree error:', result);
+        errorEl.style.display = 'block';
+        errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     } catch (err) {
-      document.getElementById(errorId).style.display = 'block';
-      document.getElementById(errorId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      console.error('Network error:', err);
+      errorEl.style.display = 'block';
+      errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     } finally {
       submitBtn.disabled = false;
-      btnText.style.display = 'inline';
-      btnLoading.style.display = 'none';
+      if (btnText) btnText.style.display = 'inline';
+      if (btnLoading) btnLoading.style.display = 'none';
     }
+  });
+
+  form.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('input', function() {
+      this.classList.remove('error');
+      const errEl = document.getElementById(this.id + '-error');
+      if (errEl) errEl.textContent = '';
+    });
   });
 }
 
-function validateForm(form) {
-  let isValid = true;
+function validateBarangayForm(form) {
+  let valid = true;
   form.querySelectorAll('[required]').forEach(field => {
-    const value = field.value.trim();
-    const errorEl = document.getElementById(field.id + '-error');
-    if (!value) {
-      showFieldError(field, errorEl, 'This field is required.');
-      isValid = false;
-    } else if (field.type === 'email' && !isValidEmail(value)) {
-      showFieldError(field, errorEl, 'Please enter a valid email address.');
-      isValid = false;
-    } else if (field.type === 'tel' && value && !isValidPhone(value)) {
-      showFieldError(field, errorEl, 'Please enter a valid phone number.');
-      isValid = false;
-    } else {
-      clearFieldError(field, errorEl);
+    const val = field.value.trim();
+    const errEl = document.getElementById(field.id + '-error');
+    if (!val) {
+      field.classList.add('error');
+      if (errEl) errEl.textContent = 'This field is required.';
+      valid = false;
+    } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      field.classList.add('error');
+      if (errEl) errEl.textContent = 'Please enter a valid email address.';
+      valid = false;
     }
   });
-  return isValid;
+  return valid;
 }
 
-function showFieldError(field, errorEl, message) {
-  field.classList.add('error');
-  if (errorEl) errorEl.textContent = message;
-}
-
-function clearFieldError(field, errorEl) {
-  field.classList.remove('error');
-  if (errorEl) errorEl.textContent = '';
-}
-
-function clearErrors(form) {
+function clearAllErrors(form) {
   form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
   form.querySelectorAll('.field-error').forEach(el => el.textContent = '');
 }
 
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPhone(phone) {
-  return /^[\d\s\-\+\(\)]{7,15}$/.test(phone);
-}
-
-document.querySelectorAll('.barangay-form input, .barangay-form select, .barangay-form textarea').forEach(field => {
-  field.addEventListener('input', function() {
-    clearFieldError(this, document.getElementById(this.id + '-error'));
-  });
+// Initialize Partnership form
+initBarangayForm({
+  formId: 'partnershipForm',
+  endpoint: 'https://formspree.io/f/mrewlwel',
+  submitBtnId: 'partner-submit-btn',
+  successId: 'partner-success',
+  errorId: 'partner-error',
+  emailFieldId: 'partner-email',
+  successEmailId: 'partner-success-email'
 });
 
-initForm('partnershipForm', 'https://formspree.io/f/mrewlwel', 'partner-success', 'partner-error', 'partner-submit-btn', 'partner-email', 'partner-success-email');
-initForm('supportForm', 'https://formspree.io/f/mnjkzkjg', 'support-success', 'support-error', 'support-submit-btn', 'support-email', 'support-success-email');
+// Initialize Support form
+initBarangayForm({
+  formId: 'supportForm',
+  endpoint: 'https://formspree.io/f/mnjkzkjg',
+  submitBtnId: 'support-submit-btn',
+  successId: 'support-success',
+  errorId: 'support-error',
+  emailFieldId: 'support-email',
+  successEmailId: 'support-success-email'
+});
 
 /* --- Smooth anchor scroll override (for same-page) --- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {

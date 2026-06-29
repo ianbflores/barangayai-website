@@ -409,72 +409,91 @@
 </section>
 
 <!-- SUPPORT INQUIRY FORM -->
-<section id="support-form" style="background: var(--white);">
+<section class="support-form-section" id="support-form">
   <div class="container">
-    <div style="max-width:760px;margin:0 auto">
-      <div class="section-header centered reveal">
-        <span class="section-label">Get Started</span>
+    <div class="form-card">
+      <div class="form-card-header">
         <h2>Support BarangayAI</h2>
-        <p class="section-sub">Tell us how you'd like to support the mission — whether as an individual donor, a foundation, or a corporate CSR partner. We'll respond within 48 hours.</p>
+        <p>Whether you want to donate, sponsor a program, or explore partnership — we'd love to hear from you.</p>
       </div>
-      <div class="form-section reveal">
-        <h3>Support Inquiry Form</h3>
-        <p>All donations are used directly for community programs. A receipt and impact report will be provided for all contributions.</p>
-        <form data-form="support-inquiry" novalidate>
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="s-name">Full Name / Organization *</label>
-              <input type="text" id="s-name" name="name" class="form-control" placeholder="Your name or organization" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="s-email">Email Address *</label>
-              <input type="email" id="s-email" name="email" class="form-control" placeholder="your@email.com" required />
-            </div>
+
+      <form id="supportForm" class="barangay-form" novalidate>
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="New Support Inquiry — BarangayAI">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="support-name">Full Name <span class="required">*</span></label>
+            <input type="text" id="support-name" name="name" placeholder="Your full name" required>
+            <span class="field-error" id="support-name-error"></span>
           </div>
           <div class="form-group">
-            <label class="form-label" for="s-type">Support Type *</label>
-            <select id="s-type" name="type" class="form-control" required>
-              <option value="">— Select support type —</option>
-              <option value="individual">Individual Donor</option>
-              <option value="foundation">Foundation / NGO</option>
-              <option value="csr-barangay">Corporate CSR — Barangay Champion (₱150,000)</option>
-              <option value="csr-municipal">Corporate CSR — Municipal Innovator (₱500,000)</option>
-              <option value="csr-national">Corporate CSR — National Changemaker (₱2M+)</option>
-              <option value="inkind">In-Kind / Non-Monetary Support</option>
-              <option value="other">Other / Not sure yet</option>
-            </select>
+            <label for="support-email">Email Address <span class="required">*</span></label>
+            <input type="email" id="support-email" name="email" placeholder="your@email.com" required>
+            <span class="field-error" id="support-email-error"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="support-org">Organization / Company</label>
+            <input type="text" id="support-org" name="organization" placeholder="Optional — your organization name">
           </div>
           <div class="form-group">
-            <label class="form-label" for="s-amount">Intended Contribution Amount</label>
-            <input type="text" id="s-amount" name="amount" class="form-control" placeholder="e.g. ₱5,000 or $100 USD" />
+            <label for="support-phone">Contact Number</label>
+            <input type="tel" id="support-phone" name="phone" placeholder="Optional — 09XX-XXX-XXXX">
           </div>
-          <div class="form-group">
-            <label class="form-label" for="s-interest">Area of Interest</label>
-            <select id="s-interest" name="interest" class="form-control">
-              <option value="">— Select area of interest —</option>
-              <option>AI Education & Literacy Programs</option>
-              <option>AI Livelihood & Economic Opportunity</option>
-              <option>AI for Small Businesses</option>
-              <option>AI for Barangay Government</option>
-              <option>AI for Farmers & Fisherfolk</option>
-              <option>AI for Community Health</option>
-              <option>Technology & Platform Infrastructure</option>
-              <option>General Support — Where Needed Most</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="s-message">Message</label>
-            <textarea id="s-message" name="message" class="form-control" placeholder="Tell us about your interest in supporting BarangayAI, any specific community or program you'd like to support, or any questions you have."></textarea>
-          </div>
-          <div class="form-feedback" style="display:none"></div>
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">
-            Submit Support Inquiry →
+        </div>
+
+        <div class="form-group">
+          <label for="support-type">How would you like to support BarangayAI? <span class="required">*</span></label>
+          <select id="support-type" name="support_type" required>
+            <option value="">Select support type...</option>
+            <option value="Individual Donation">Individual Donation</option>
+            <option value="Corporate Sponsorship">Corporate Sponsorship / CSR Partnership</option>
+            <option value="Grant or Foundation Funding">Grant or Foundation Funding</option>
+            <option value="In-Kind Support">In-Kind Support (technology, services, expertise)</option>
+            <option value="Volunteer or Pro Bono">Volunteer or Pro Bono Contribution</option>
+            <option value="Other">Other — explain below</option>
+          </select>
+          <span class="field-error" id="support-type-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="support-amount">Estimated support amount (optional)</label>
+          <select id="support-amount" name="amount">
+            <option value="">Prefer not to say</option>
+            <option value="Under ₱10,000">Under ₱10,000</option>
+            <option value="₱10,000 – ₱50,000">₱10,000 – ₱50,000</option>
+            <option value="₱50,000 – ₱200,000">₱50,000 – ₱200,000</option>
+            <option value="₱200,000 – ₱1,000,000">₱200,000 – ₱1,000,000</option>
+            <option value="Over ₱1,000,000">Over ₱1,000,000</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="support-message">Tell us about your interest in supporting BarangayAI <span class="required">*</span></label>
+          <textarea id="support-message" name="message" rows="5" placeholder="Share your motivation, what programs you'd like to support, and any questions you have..." required></textarea>
+          <span class="field-error" id="support-message-error"></span>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn-submit" id="support-submit-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loading" style="display:none">Sending...</span>
           </button>
-          <p style="font-size:.82rem;color:var(--gray);margin-top:1rem;text-align:center">
-            By submitting this form, you agree to our <a href="privacy.html">Privacy Policy</a>. We will follow up within 48 hours to discuss how to process your contribution and maximize its impact.
-          </p>
-        </form>
-      </div>
+        </div>
+
+        <div class="form-success" id="support-success" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3>Message Received!</h3>
+          <p>Maraming salamat for your interest in supporting BarangayAI! We'll be in touch at <strong id="support-success-email"></strong> shortly.</p>
+        </div>
+
+        <div class="form-error-msg" id="support-error" style="display:none">
+          <p>Something went wrong. Please try again or email us directly at <a href="mailto:info@barangayai.com">info@barangayai.com</a></p>
+        </div>
+      </form>
     </div>
   </div>
 </section>

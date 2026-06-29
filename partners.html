@@ -438,85 +438,105 @@
 </section>
 
 <!-- INQUIRY FORM -->
-<section id="inquiry-form" style="background: var(--white);">
+<section class="partner-form-section" id="inquiry-form">
   <div class="container">
-    <div style="max-width:760px;margin:0 auto">
-      <div class="section-header centered reveal">
-        <span class="section-label">Apply Now</span>
+    <div class="form-card">
+      <div class="form-card-header">
         <h2>Submit a Partnership Inquiry</h2>
-        <p class="section-sub">
-          Tell us about your community. Our team will respond within 48 hours to schedule a free initial consultation — no commitment required.
-        </p>
+        <p>Tell us about your barangay and we'll get back to you within 2 business days.</p>
       </div>
-      <div class="form-section reveal">
-        <h3>Partnership Inquiry Form</h3>
-        <p>All fields help us understand your community so we can recommend the right partnership tier and program approach.</p>
-        <form data-form="partner-inquiry" novalidate>
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="p-name">Full Name *</label>
-              <input type="text" id="p-name" name="name" class="form-control" placeholder="Your full name" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="p-position">Position / Title *</label>
-              <input type="text" id="p-position" name="position" class="form-control" placeholder="e.g. Barangay Captain" required />
-            </div>
-          </div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="p-barangay">Barangay / Municipality *</label>
-              <input type="text" id="p-barangay" name="barangay" class="form-control" placeholder="Barangay & Municipality" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="p-province">Province *</label>
-              <input type="text" id="p-province" name="province" class="form-control" placeholder="Province" required />
-            </div>
-          </div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label class="form-label" for="p-email">Email Address *</label>
-              <input type="email" id="p-email" name="email" class="form-control" placeholder="your@email.com" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="p-phone">Mobile Number *</label>
-              <input type="tel" id="p-phone" name="phone" class="form-control" placeholder="+63 9XX XXX XXXX" required />
-            </div>
+
+      <form id="partnershipForm" class="barangay-form" novalidate>
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="New Partnership Inquiry — BarangayAI">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="partner-name">Full Name <span class="required">*</span></label>
+            <input type="text" id="partner-name" name="name" placeholder="Your full name" required>
+            <span class="field-error" id="partner-name-error"></span>
           </div>
           <div class="form-group">
-            <label class="form-label" for="p-tier">Partnership Tier of Interest</label>
-            <select id="p-tier" name="tier" class="form-control">
-              <option value="">— Select a tier —</option>
-              <option value="pilot">Tier 1 — Pilot Barangay</option>
-              <option value="municipal">Tier 2 — Municipal Partner</option>
-              <option value="provincial">Tier 3 — Provincial Partner</option>
-              <option value="national">Tier 4 — National Partner / Government Agency</option>
-              <option value="unsure">I'm not sure yet — help me decide</option>
-            </select>
+            <label for="partner-position">Position / Title <span class="required">*</span></label>
+            <input type="text" id="partner-position" name="position" placeholder="e.g. Barangay Captain, Municipal Mayor" required>
+            <span class="field-error" id="partner-position-error"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="partner-barangay">Barangay Name <span class="required">*</span></label>
+            <input type="text" id="partner-barangay" name="barangay" placeholder="e.g. Barangay San Jose" required>
+            <span class="field-error" id="partner-barangay-error"></span>
           </div>
           <div class="form-group">
-            <label class="form-label" for="p-population">Approximate Barangay Population</label>
-            <select id="p-population" name="population" class="form-control">
-              <option value="">— Select range —</option>
-              <option>Under 500 residents</option>
-              <option>500–2,000 residents</option>
-              <option>2,000–10,000 residents</option>
-              <option>10,000–50,000 residents</option>
-              <option>Over 50,000 (municipality/city)</option>
-            </select>
+            <label for="partner-municipality">Municipality / City <span class="required">*</span></label>
+            <input type="text" id="partner-municipality" name="municipality" placeholder="e.g. Calamba, Laguna" required>
+            <span class="field-error" id="partner-municipality-error"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="partner-email">Email Address <span class="required">*</span></label>
+            <input type="email" id="partner-email" name="email" placeholder="your@email.com" required>
+            <span class="field-error" id="partner-email-error"></span>
           </div>
           <div class="form-group">
-            <label class="form-label" for="p-message">Tell Us About Your Community *</label>
-            <textarea id="p-message" name="message" class="form-control" placeholder="What are the biggest challenges your barangay faces? What AI programs interest you most? Any specific needs or context we should know?" required></textarea>
+            <label for="partner-phone">Contact Number <span class="required">*</span></label>
+            <input type="tel" id="partner-phone" name="phone" placeholder="09XX-XXX-XXXX" required>
+            <span class="field-error" id="partner-phone-error"></span>
           </div>
-          <div class="form-feedback" style="display:none"></div>
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">
-            Submit Partnership Inquiry →
+        </div>
+
+        <div class="form-group">
+          <label for="partner-interest">Which BarangayAI service are you interested in? <span class="required">*</span></label>
+          <select id="partner-interest" name="interest" required>
+            <option value="">Select a service...</option>
+            <option value="AI Citizen Chatbot">AI Citizen Chatbot (24/7 Messenger bot)</option>
+            <option value="AI Education Workshop">AI Education Workshop for residents</option>
+            <option value="AI Document Generation">AI Document Generation</option>
+            <option value="Full BarangayAI OS Platform">Full BarangayAI OS Platform</option>
+            <option value="Multiple Services">Multiple services — tell us more below</option>
+          </select>
+          <span class="field-error" id="partner-interest-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="partner-message">Tell us about your barangay and what you hope to achieve <span class="required">*</span></label>
+          <textarea id="partner-message" name="message" rows="5" placeholder="Briefly describe your barangay, your current challenges, and what you'd like BarangayAI to help with..." required></textarea>
+          <span class="field-error" id="partner-message-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="partner-population">Approximate barangay population</label>
+          <select id="partner-population" name="population">
+            <option value="">Select range...</option>
+            <option value="Under 1,000">Under 1,000</option>
+            <option value="1,000 – 5,000">1,000 – 5,000</option>
+            <option value="5,000 – 10,000">5,000 – 10,000</option>
+            <option value="10,000 – 25,000">10,000 – 25,000</option>
+            <option value="Over 25,000">Over 25,000</option>
+          </select>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn-submit" id="partner-submit-btn">
+            <span class="btn-text">Submit Inquiry</span>
+            <span class="btn-loading" style="display:none">Sending...</span>
           </button>
-          <p style="font-size:.82rem;color:var(--gray);margin-top:1rem;text-align:center">
-            By submitting this form, you agree to our <a href="privacy.html">Privacy Policy</a>. We will never share your information with third parties.
-          </p>
-        </form>
-      </div>
+        </div>
+
+        <div class="form-success" id="partner-success" style="display:none">
+          <div class="success-icon">✓</div>
+          <h3>Inquiry Received!</h3>
+          <p>Salamat sa inyong interes sa BarangayAI! We'll review your inquiry and get back to you at <strong id="partner-success-email"></strong> within 2 business days.</p>
+        </div>
+
+        <div class="form-error-msg" id="partner-error" style="display:none">
+          <p>Something went wrong. Please try again or email us directly at <a href="mailto:info@barangayai.com">info@barangayai.com</a></p>
+        </div>
+      </form>
     </div>
   </div>
 </section>

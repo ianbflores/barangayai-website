@@ -248,34 +248,107 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-/* --- Contact form basic validation + submission feedback --- */
-(function initForms() {
-  document.querySelectorAll('form[data-form]').forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('[type="submit"]');
-      const original = btn ? btn.textContent : '';
-      const feedback = form.querySelector('.form-feedback');
+/* ── BarangayAI Form Handler ── */
 
-      if (btn) {
-        btn.disabled = true;
-        btn.textContent = 'Sending…';
-      }
+function initForm(formId, endpoint, successId, errorId, submitBtnId, emailFieldId, successEmailId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
 
-      // Simulate async submission
-      setTimeout(() => {
-        if (feedback) {
-          feedback.textContent = 'Thank you! We received your message and will be in touch within 2–3 business days.';
-          feedback.className = 'form-feedback alert alert-success mt-2';
-          feedback.style.display = 'block';
-        }
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    clearErrors(form);
+    if (!validateForm(form)) return;
+
+    const submitBtn = document.getElementById(submitBtnId);
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+
+    document.getElementById(successId).style.display = 'none';
+    document.getElementById(errorId).style.display = 'none';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        const emailVal = document.getElementById(emailFieldId)?.value || '';
+        const successEmailEl = document.getElementById(successEmailId);
+        if (successEmailEl) successEmailEl.textContent = emailVal;
         form.reset();
-        if (btn) { btn.disabled = false; btn.textContent = original; }
-        feedback?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 1200);
-    });
+        document.getElementById(successId).style.display = 'block';
+        document.getElementById(successId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      document.getElementById(errorId).style.display = 'block';
+      document.getElementById(errorId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } finally {
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+    }
   });
-})();
+}
+
+function validateForm(form) {
+  let isValid = true;
+  form.querySelectorAll('[required]').forEach(field => {
+    const value = field.value.trim();
+    const errorEl = document.getElementById(field.id + '-error');
+    if (!value) {
+      showFieldError(field, errorEl, 'This field is required.');
+      isValid = false;
+    } else if (field.type === 'email' && !isValidEmail(value)) {
+      showFieldError(field, errorEl, 'Please enter a valid email address.');
+      isValid = false;
+    } else if (field.type === 'tel' && value && !isValidPhone(value)) {
+      showFieldError(field, errorEl, 'Please enter a valid phone number.');
+      isValid = false;
+    } else {
+      clearFieldError(field, errorEl);
+    }
+  });
+  return isValid;
+}
+
+function showFieldError(field, errorEl, message) {
+  field.classList.add('error');
+  if (errorEl) errorEl.textContent = message;
+}
+
+function clearFieldError(field, errorEl) {
+  field.classList.remove('error');
+  if (errorEl) errorEl.textContent = '';
+}
+
+function clearErrors(form) {
+  form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+  form.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone) {
+  return /^[\d\s\-\+\(\)]{7,15}$/.test(phone);
+}
+
+document.querySelectorAll('.barangay-form input, .barangay-form select, .barangay-form textarea').forEach(field => {
+  field.addEventListener('input', function() {
+    clearFieldError(this, document.getElementById(this.id + '-error'));
+  });
+});
+
+initForm('partnershipForm', 'https://formspree.io/f/mrewlwel', 'partner-success', 'partner-error', 'partner-submit-btn', 'partner-email', 'partner-success-email');
+initForm('supportForm', 'https://formspree.io/f/mnjkzkjg', 'support-success', 'support-error', 'support-submit-btn', 'support-email', 'support-success-email');
 
 /* --- Smooth anchor scroll override (for same-page) --- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {

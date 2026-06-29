@@ -84,7 +84,7 @@
   });
 })();
 
-/* --- Nav: scroll shadow + active page --- */
+/* --- Nav: scroll shadow + hamburger + active page --- */
 (function initNav() {
   const nav = document.querySelector('.nav');
   const hamburger = document.querySelector('.nav-hamburger');
@@ -97,19 +97,35 @@
   }
 
   if (hamburger && mobileMenu) {
+    const closeMenu = () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
     hamburger.addEventListener('click', () => {
       const isOpen = hamburger.classList.toggle('open');
       mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
     mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMenu);
     });
+
+    // Close on outside tap
+    document.addEventListener('click', e => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Close on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    }, { passive: true });
   }
 
   // Mark active nav link
@@ -122,6 +138,17 @@
     }
   });
 })();
+
+/* --- Smooth scroll for anchor links --- */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
 
 /* --- Scroll Reveal --- */
 (function initReveal() {
